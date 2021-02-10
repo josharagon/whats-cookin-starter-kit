@@ -1,10 +1,10 @@
 const chai = require('chai');
 const expect = chai.expect;
 
-const testRecipes = require('./test-recipes');
-const ingredientList = require('./test-ingredients')
 const RecipeRepository = require('../src/reciperepository');
 const Recipe = require('../src/recipe');
+const testRecipes = require('./test-recipes');
+const ingredientList = require('./test-ingredients')
 const testIngredients = require('./test-ingredients');
 const testRecipeArr = [];
 const recipeClasses = testRecipes.forEach(recipe => testRecipeArr.push(new Recipe(recipe)));
@@ -35,7 +35,6 @@ describe('RecipeRepository', function() {
 
     it('should be able to filter via the recipe name', function(){
       const recipeRepo = new RecipeRepository(testRecipeArr)
-      console.log(testRecipeArr)
       expect(recipeRepo.filterRecipesViaName('Name', ingredientList)).to.deep.equal(["Name Search Test"]);
       expect(recipeRepo.filterRecipesViaName('Pork', ingredientList)).to.deep.equal(["Maple Dijon Apple Cider Grilled Pork Chops"])
     })
