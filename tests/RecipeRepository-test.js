@@ -23,13 +23,13 @@ describe('RecipeRepository', function() {
 
     it('should return a list of recipes filtered by tag', function() {
       const recipeRepo = new RecipeRepository(testRecipeArr)
-      expect(recipeRepo.filterRecipesViaTags('testSingle')).to.deep.equal(
+      expect(recipeRepo.filterRecipesViaTags(['testSingle'])).to.deep.equal(
         ["Loaded Chocolate Chip Pudding Cookie Cups","Dirty Steve's Original Wing Sauce","Elvis Pancakes"])
     })
 
     it('should be able to filter via multiple tags', function() {
       const recipeRepo = new RecipeRepository(testRecipeArr)
-      expect(recipeRepo.filterRecipesViaTags('testMultiple1', 'testMultiple2')).to.deep.equal(
+      expect(recipeRepo.filterRecipesViaTags(['testMultiple1', 'testMultiple2'])).to.deep.equal(
         ["Loaded Chocolate Chip Pudding Cookie Cups", "3 Tag Search Test"])
     })
 
