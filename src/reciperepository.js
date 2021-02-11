@@ -19,6 +19,7 @@ class RecipeRepository {
     }, [])
     return search
   }
+
   
   filterRecipesViaName(itemName, ourIngredients) {
     const search = this.recipes.filter(recipe =>
