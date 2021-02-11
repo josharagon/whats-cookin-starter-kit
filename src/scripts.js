@@ -2,6 +2,7 @@ let allRecipes = {}
 const nav = document.querySelector('#nav');
 const userKitchen = document.querySelector('#userDropdown');
 const recipeChart = document.querySelector('#recipes');
+const recipesBox = document.querySelector('#recipesBox');
 
 nav.addEventListener('click', navPress)
 window.addEventListener('load', instantiate)
@@ -9,7 +10,7 @@ window.addEventListener('load', instantiate)
 function instantiate() {
   instantiateRecipeRepository();
   console.log(allRecipes)
-  showRecipeImages();
+  showRecipeImages(allRecipes.recipes);
 }
 
 function instantiateRecipeRepository() {
@@ -20,9 +21,13 @@ function instantiateRecipeRepository() {
   allRecipes = new RecipeRepository(recipes)
 }
 
-function showRecipeImages() {
-  allRecipes.recipes.forEach(recipe => {
-    recipeChart.innerHTML += `<img src=${recipe.image} alt=${recipe.name}>`
+function showRecipeImages(recipes) {
+  recipes.forEach(recipe => {
+    recipeChart.innerHTML += `<div class="recipe-image">
+      <img src=${recipe.image} alt=${recipe.name}>
+      <div class="centered">${recipe.name}</div>
+    </div>`
+
   })
 }
 
@@ -39,8 +44,10 @@ function showKitchen() {
   if (userKitchen.style.maxHeight) {
     userKitchen.style.maxHeight = null;
     userKitchen.style.height = null;
+    recipesBox.style.height = '85%';
   } else {
     userKitchen.style.maxHeight = '275px';
     userKitchen.style.height = '275px';
+    recipesBox.style.height = '60%';
   }
 }
