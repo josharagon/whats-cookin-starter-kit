@@ -3,9 +3,11 @@ const nav = document.querySelector('#nav');
 const userKitchen = document.querySelector('#userDropdown');
 const recipeChart = document.querySelector('#recipes');
 const recipesBox = document.querySelector('#recipesBox');
+const searchBar = document.querySelector('.search-bar');
 
 nav.addEventListener('click', navPress)
 window.addEventListener('load', instantiate)
+searchBar.addEventListener('keyup', updateRecipeImages)
 
 function instantiate() {
   instantiateRecipeRepository();
@@ -29,6 +31,20 @@ function showRecipeImages(recipes) {
     </div>`
   })
 }
+
+function updateRecipeImages() {
+  allRecipes.filterRecipesViaName(searchBar.value);
+}
+
+// function fixCaps(searchValue) {
+//   searchValue[0].toUpperCase()
+//   for (let i = 0; i < searchValue.length; i++) {
+//       if (searchValue[i-1] === '') {
+//         searchValue[i].toUpperCase()
+//       }
+    
+//   }
+// }
 
 function navPress() {
   if (event.target.id === 'whatsCookin') {

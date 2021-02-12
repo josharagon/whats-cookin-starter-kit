@@ -17,8 +17,10 @@ function filterRecipesViaTags(tags) {
 
 function filterRecipesViaName(itemName) {
   let search = this.recipes.filter(recipe =>
-    recipe.returnIngredientNames(ingredientsData).includes(itemName) ||
-    recipe.name.includes(itemName));
+    recipe.returnIngredientNames(ingredientsData).includes(itemName.toUpperCase()) ||
+    recipe.name.toUpperCase().includes(itemName.toUpperCase()));
+    recipeChart.innerHTML = ''
+    showRecipeImages(search);
     const results = search.map(result => result.name);
     return results
 };

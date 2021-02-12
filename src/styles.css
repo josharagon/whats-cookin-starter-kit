@@ -70,10 +70,9 @@ ul {
 
 
 /* NAV BAR */
-
-.home-recipes {
-    justify-content: space-evenly;
-    display: flex;
+.search-bar {
+  justify-self: center;
+  width: 50%;
 }
 
 .main-header, .welcome-back {
