@@ -1,10 +1,13 @@
 let allRecipes = {}
 const nav = document.querySelector('#nav');
+const main = document.querySelector('#main')
 const userKitchen = document.querySelector('#userDropdown');
 const recipeChart = document.querySelector('#recipes');
 const recipesBox = document.querySelector('#recipesBox');
+const recipeCard = document.querySelector('#recipeCard');
 
 nav.addEventListener('click', navPress)
+recipeChart.addEventListener('click', mainPress)
 window.addEventListener('load', instantiate)
 
 function instantiate() {
@@ -23,11 +26,10 @@ function instantiateRecipeRepository() {
 
 function showRecipeImages(recipes) {
   recipes.forEach(recipe => {
-    recipeChart.innerHTML += `<div class="recipe-image">
-      <img src=${recipe.image} alt=${recipe.name}>
-      <div class="centered">${recipe.name}</div>
+    recipeChart.innerHTML += `<div class="recipe-image" id=${recipe.id}>
+      <img src=${recipe.image} id=${recipe.id} alt=${recipe.name}>
+      <div class="centered" id=${recipe.id}>${recipe.name}</div>
     </div>`
-
   })
 }
 
@@ -35,6 +37,18 @@ function navPress() {
   if (event.target.id === 'whatsCookin') {
     showKitchen()
   }
+}
+
+function mainPress() {
+  let click = event.target.id;
+  const card = allRecipes.recipes.find(recipe => recipe.id == click)
+  if(card) {
+    showRecipe(card)
+  }
+}
+
+function showRecipe(recipe) {
+  recipeCard.classList.remove('hidden')
 }
 
 
