@@ -27,7 +27,6 @@ function showRecipeImages(recipes) {
       <img src=${recipe.image} alt=${recipe.name}>
       <div class="centered">${recipe.name}</div>
     </div>`
-
   })
 }
 
