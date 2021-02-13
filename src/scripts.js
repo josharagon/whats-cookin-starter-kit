@@ -5,6 +5,7 @@ const userKitchen = document.querySelector('#userDropdown');
 const recipeChart = document.querySelector('#recipes');
 const recipesBox = document.querySelector('#recipesBox');
 const recipeCard = document.querySelector('#recipeCard');
+const recipeInfo = document.querySelector('#recipeInfo');
 
 nav.addEventListener('click', navPress)
 recipeChart.addEventListener('click', mainPress)
@@ -51,20 +52,24 @@ function mainPress() {
 
 function cardPress() {
   if(event.target.id === 'exitRecipe') {
-    recipeCard.classList.add('hidden')
-    recipeCard.innerHTML = '<button type="button" class="exit-recipe-btn" id="exitRecipe">&#10006;</button>'
+    unhideRecipeCard()
+    recipeInfo.innerHTML = ''
   }
 }
 
 function showRecipe(recipe) {
-  recipeCard.classList.remove('hidden')
-  recipeCard.innerHTML += `<img src=${recipe.image} alt=${recipe.name}>
+  unhideRecipeCard()
+  recipeInfo.innerHTML += `<img src=${recipe.image} alt=${recipe.name}>
   <h2 class="recipeTitle card-text">${recipe.name}</h2>
   <h3 class="cost card-text">Cost: $${recipe.returnTotalCost(ingredientsData)}</h3>
   <h4 class="cost card-text">Ingredients: $${recipe.returnIngredientNames(ingredientsData)}</h4>
   `
 }
 
+function unhideRecipeCard() {
+  recipeCard.classList.toggle('hidden')
+
+}
 
 function showKitchen() {
   document.querySelector('#whatsCookin').classList.toggle("active");
