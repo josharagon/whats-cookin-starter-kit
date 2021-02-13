@@ -6,6 +6,7 @@ const recipeChart = document.querySelector('#recipes');
 const recipesBox = document.querySelector('#recipesBox');
 const recipeCard = document.querySelector('#recipeCard');
 const recipeInfo = document.querySelector('#recipeInfo');
+const instructions = document.querySelector('#instructions');
 
 nav.addEventListener('click', navPress)
 recipeChart.addEventListener('click', mainPress)
@@ -51,24 +52,36 @@ function mainPress() {
 }
 
 function cardPress() {
+  console.log(event.target)
   if(event.target.id === 'exitRecipe') {
-    unhideRecipeCard()
     recipeInfo.innerHTML = ''
+    unhideRecipeCard()
+  } else if (event.target.id === 'flipRecipe'){
+    showInstructions()
+    recipeInfo.classList.toggle('hidden')
   }
 }
 
 function showRecipe(recipe) {
   unhideRecipeCard()
+
   recipeInfo.innerHTML += `<img src=${recipe.image} alt=${recipe.name}>
   <h2 class="recipeTitle card-text">${recipe.name}</h2>
   <h3 class="cost card-text">Cost: $${recipe.returnTotalCost(ingredientsData)}</h3>
-  <h4 class="cost card-text">Ingredients: $${recipe.returnIngredientNames(ingredientsData)}</h4>
-  `
+  <h4 class="cost card-text">Ingredients: ${recipe.returnIngredientNames(ingredientsData)}</h4>`
+  // <ol class="hidden" id="instructions">
+  // ${recipe.instructions.forEach(step => {
+  //   return `<li>${step.instruction}</li>`
+  // })}
+  // </ol>`
+}
+
+function showInstructions(recipe) {
+//  instructions.classList.toggle('hidden')
 }
 
 function unhideRecipeCard() {
   recipeCard.classList.toggle('hidden')
-
 }
 
 function showKitchen() {
