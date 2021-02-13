@@ -27,15 +27,17 @@ class Recipe {
     const ingredientQuantity = this.ingredients.map(item => {
       return item.quantity.amount
     });
-    const cost = ourIngredients.map(item => {
+    const cost = ourIngredients.filter(item => {
       if (this.ingredientCodes.includes(item.id)) {
         return item.estimatedCostInCents;
       }
     })
+    console.log(cost)
     for (let i = 0; i < ingredientQuantity.length; i++) {
-      totalCost += (ingredientQuantity[i] * cost[i]) / 100
+      totalCost += (ingredientQuantity[i] * cost[i].estimatedCostInCents)
     }
-    return totalCost;
+    totalCost /= 1000;
+    return Math.round(100*totalCost)/100;
   }
 
   returnInstructions() {

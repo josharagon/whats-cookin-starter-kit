@@ -8,6 +8,7 @@ const recipeCard = document.querySelector('#recipeCard');
 
 nav.addEventListener('click', navPress)
 recipeChart.addEventListener('click', mainPress)
+recipeCard.addEventListener('click', cardPress)
 window.addEventListener('load', instantiate)
 
 function instantiate() {
@@ -43,12 +44,24 @@ function mainPress() {
   let click = event.target.id;
   const card = allRecipes.recipes.find(recipe => recipe.id == click)
   if(card) {
+    console.log(card)
     showRecipe(card)
+  }
+}
+
+function cardPress() {
+  if(event.target.id === 'exitRecipe') {
+    recipeCard.classList.add('hidden')
+    recipeCard.innerHTML = '<button type="button" class="exit-recipe-btn" id="exitRecipe">&#10006;</button>'
   }
 }
 
 function showRecipe(recipe) {
   recipeCard.classList.remove('hidden')
+  recipeCard.innerHTML += `<img src=${recipe.image} alt=${recipe.name}>
+  <h2 class="recipeTitle card-text">${recipe.name}</h2>
+  <h3 class="cost card-text">Cost: $${recipe.returnTotalCost(ingredientsData)}</h3>
+  `
 }
 
 

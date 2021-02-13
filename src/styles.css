@@ -37,11 +37,10 @@ ul {
 
 
 /* RECIPE CARD */
-
 .recipe-card {
   z-index: 1;
-  width: 31.4%;
-  padding-top: 48%;
+  width: 400px;
+  height: 80%;
   border: 5px solid #FC766AFF;
   border-radius: 10px;
   background-color: #B0B8B4FF;
@@ -55,6 +54,31 @@ ul {
     0 100px 80px rgba(0, 0, 0, 0.48)
 }
 
+.exit-recipe-btn {
+  position: absolute;
+  top: 0px;
+  right:0px;
+  border: 0px solid black;
+  background-color: transparent;
+  padding:10px;
+  color: #FC766AFF;
+  cursor:pointer;
+  text-shadow: 0px 1px #184A45FF,
+  0px -1px #184A45FF,
+  1px 0px #184A45FF,
+  -1px 0px #184A45FF;
+}
+
+.exit-recipe-btn:hover{
+  text-shadow: 0px 3px #184A45FF,
+  0px -3px #184A45FF,
+  3px 0px #184A45FF,
+  -3px 0px #184A45FF;
+}
+
+.card-text {
+  color: #184A45FF;
+}
 
 /* RECIPE IMAGES */
 
@@ -66,10 +90,10 @@ ul {
   width: 20%;
   text-align: center;
   color: #e3e3e300;
-  text-shadow: 0px 1px #184A4500,
-  0px -1px #184A4500,
-  1px 0px #184A4500,
-  -1px 0px #184A4500;
+  text-shadow: 0px 2px #184A4500,
+  0px -2px #184A4500,
+  2px 0px #184A4500,
+  -2px 0px #184A4500;
   transition: .5s ease;
 }
 
