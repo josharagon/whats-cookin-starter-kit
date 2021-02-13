@@ -19,7 +19,7 @@ class Recipe {
       }
       return ingredientNames;
     }, [])
-    return names.join(', ')
+    return names
   }
 
   returnTotalCost(ourIngredients) {

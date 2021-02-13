@@ -17,7 +17,7 @@ function filterRecipesViaTags(tags) {
 
 function filterRecipesViaName(itemName) {
   let search = this.recipes.filter(recipe =>
-    recipe.returnIngredientNames(ingredientsData).includes(itemName.toUpperCase()) ||
+    recipe.returnIngredientNames(ingredientsData).join(', ').includes(itemName.toUpperCase()) ||
     recipe.name.toUpperCase().includes(itemName.toUpperCase()));
     recipeChart.innerHTML = ''
     showRecipeImages(search);

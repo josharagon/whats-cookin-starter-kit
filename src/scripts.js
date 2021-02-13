@@ -34,17 +34,8 @@ function showRecipeImages(recipes) {
 
 function updateRecipeImages() {
   allRecipes.filterRecipesViaName(searchBar.value);
+  allRecipes.filterRecipesViaTags(searchBar.value)
 }
-
-// function fixCaps(searchValue) {
-//   searchValue[0].toUpperCase()
-//   for (let i = 0; i < searchValue.length; i++) {
-//       if (searchValue[i-1] === '') {
-//         searchValue[i].toUpperCase()
-//       }
-    
-//   }
-// }
 
 function navPress() {
   if (event.target.id === 'whatsCookin') {
