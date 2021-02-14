@@ -23,7 +23,7 @@
       <h1 type="button" class="main-header" id="whatsCookin">What's Cookin'?</h1>
       <p class="welcome-back">Welcome Back, User!</p>
     </nav>
-    <main>
+    <main id="main">
       <section class ="user-dropdown collapsed" id="userDropdown">
         <article class="owned-ingredients">
           <h2>Your Pantry</h2>
@@ -41,6 +41,13 @@
             <ol>Recipe 1</ol>
           </div>
         </aside>
+      </section>
+      <section class="recipe-card centered hidden" id="recipeCard">
+        <button type="button" class="exit-recipe-btn " id="exitRecipe">&#10006;</button>
+        <button type="button" class="flip-recipe-btn " id="flipRecipe">&#10150;</button>
+        <section class="recipe-info" id="recipeInfo">
+          
+        </section>
       </section>
       <article class="you-should-try" id="recipesBox">
         <h1>Recipes You Should Try!</h1>
