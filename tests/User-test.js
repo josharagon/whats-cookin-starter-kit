@@ -59,12 +59,15 @@ describe('User', function() {
      it('should be able to filter favorited recipes by one or more tags', function() {
        newUser.addToFavorites(595736)
        newUser.addToFavorites(678353)
-       expect(newUser.filterFavoriteRecipesViaTags('testMultiple1', 'testMultiple2')).to.deep.equal(
-         ["Loaded Chocolate Chip Pudding Cookie Cups", "Maple Dijon Apple Cider Grilled Pork Chops"]
+       expect(newUser.filterFavoriteRecipesViaTags(['testMultiple1', 'testMultiple2'])).to.deep.equal(
+         [testRecipes[0]])
      })
 
      it('should be able to search saved recipes by name or ingredients', function() {
-       expect(newUser.searchSavedRecipesViaName())
+       newUser.addToFavorites(595736)
+       newUser.addToFavorites(678353)
+       newUser.addToFavorites(741603)
+       expect(newUser.searchSavedRecipesViaName(['Dijon'])).to.deep.equal([userRecipes[0], userRecipes[1]])
      })
   })
 })

@@ -46,7 +46,7 @@ const testRecipes = [
         "number": 3
       }
     ],
-    "name": "Loaded Chocolate Chip Pudding Cookie Cups",
+    "name": "Dijon Loaded Chocolate Chip Pudding Cookie Cups",
     "tags": [
       "testSingle",
       "testMultiple1",
