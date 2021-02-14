@@ -2,7 +2,7 @@ function filterRecipesViaTags(tags) {
   const search =  this.recipes.reduce((recipes, recipe) => {
     let count = 0;
     tags.forEach(tag => {
-      if (recipe.tags.includes(tag)) {
+      if (recipe.tags.join(', ').includes(tag)) {
         count += 1;
       }
     })
