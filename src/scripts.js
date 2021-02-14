@@ -34,7 +34,8 @@ function showRecipeImages(recipes) {
 
 function updateRecipeImages() {
   allRecipes.filterRecipesViaName(searchBar.value);
-  allRecipes.filterRecipesViaTags(searchBar.value)
+  console.log(searchBar.value.split('  '))
+  allRecipes.filterRecipesViaTags(searchBar.value.split('  '))
 }
 
 function navPress() {

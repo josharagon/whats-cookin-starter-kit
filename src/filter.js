@@ -7,11 +7,12 @@ function filterRecipesViaTags(tags) {
       }
     })
     if (count === tags.length) {
-      recipes.push(recipe.name)
+      recipes.push(recipe)
     }
     return recipes
   }, [])
-  return search
+  showRecipeImages(search);
+  return search 
 };
 
 
