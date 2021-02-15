@@ -32,3 +32,8 @@ function filterRecipesViaName(itemName) {
   const results = search.map(result => result.name);
   return results
 }
+
+module.exports = {
+filterRecipesViaName,
+filterRecipesViaTags
+};

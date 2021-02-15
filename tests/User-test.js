@@ -2,6 +2,8 @@ const chai = require('chai');
 const expect = chai.expect;
 const testUser = require('./test-user');
 const testRecipes = require('./test-recipes')
+const filterRecipesViaName = require('../src/filter.js');
+const filterRecipesViaTags = require('../src/filter.js');
 const Recipe = require('../src/recipe');
 const RecipeRepository = require('../src/reciperepository')
 const User = require('../src/user');
@@ -42,25 +44,38 @@ describe('User', function() {
   })
 
   describe('Methods', function() {
-    let userRecipes = new RecipeRepository(testRecipes.map(recipe => {
+    let allRecipes = new RecipeRepository(testRecipes.map(recipe => {
       return new Recipe(recipe)
     }))
 
-     it('should be able to favorite/unfavorite recipes', function() {
-       newUser.addToFavorites(595736);
-       expect(newUser.favorites).to.deep.equal([userRecipes[0]])
+     it('should be able to add favorite recipes', function() {
+       newUser.addRecipe('favorites', allRecipes, 595736);
+       expect(newUser.favorites).to.deep.equal([allRecipes.recipes[0]])
      })
 
-     xit('should be able to add a recipe to a list of recipes to cook', function() {
-       newUser.saveRecipe(595736);
-       expect(newUser.savedRecipes).to.deep.equal([userRecipes[0]])
+     it('should be able to remove favorite recipes', function() {
+       newUser.addRecipe('favorites',allRecipes, 595736);
+       newUser.removeRecipe('favorites', 595736)
+       expect(newUser.favorites).to.deep.equal([])
+     })
+
+     it('should be able to add a recipe to a list of recipes to cook', function() {
+       newUser.addRecipe('savedRecipes',allRecipes, 595736);
+       expect(newUser.savedRecipes).to.deep.equal([allRecipes.recipes[0]])
+     })
+
+     it('should be able to remove a recipe to a list of recipes to cook', function() {
+       newUser.addRecipe('savedRecipes',allRecipes, 595736);
+       newUser.addRecipe('savedRecipes',allRecipes, 678353);
+       newUser.removeRecipe('savedRecipes',678353)
+       expect(newUser.savedRecipes).to.deep.equal([allRecipes.recipes[0]])
      })
 
      xit('should be able to filter favorited recipes by one or more tags', function() {
        newUser.addToFavorites(595736)
        newUser.addToFavorites(678353)
-       expect(newUser.filterFavoriteRecipesViaTags(['testMultiple1', 'testMultiple2'])).to.deep.equal(
-         [testRecipes[0]])
+       //expect(newUser.filterFavoriteRecipesViaTags(['testMultiple1', 'testMultiple2'])).to.deep.equal(
+         //[testRecipes[0]])
      })
 
      xit('should be able to search saved recipes by name or ingredients', function() {

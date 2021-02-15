@@ -1,3 +1,6 @@
+const filterRecipesViaName = require('../src/filter.js');
+const filterRecipesViaTags = require('../src/filter.js');
+
 class RecipeRepository {
   constructor(recipes) {
     this.recipes = recipes
@@ -5,7 +8,5 @@ class RecipeRepository {
     this.filterRecipesViaName = filterRecipesViaName
   }
 }
-
-
 
 module.exports = RecipeRepository;
