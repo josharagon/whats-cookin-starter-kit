@@ -17,13 +17,12 @@ window.addEventListener('load', instantiate)
 
 function instantiate() {
   instantiateRecipeRepository();
-  console.log(allRecipes)
   showRecipeImages(allRecipes.recipes);
 }
 
 function instantiateRecipeRepository() {
   const recipes = recipeData.map(recipe => {
-    var recipe = new Recipe(recipe)
+    let recipe = new Recipe(recipe)
     return recipe;
   })
   allRecipes = new RecipeRepository(recipes)
@@ -42,23 +41,24 @@ function navPress() {
   if (event.target.id === 'whatsCookin') {
     showKitchen()
   }
+  if (event.target.id === 'searchBar') {
+    updateRecipeImages(allRecipes)
+  }
 }
 
 function mainPress() {
   let click = event.target.id;
-  const card = allRecipes.recipes.find(recipe => recipe.id == click)
-  if(card) {
-    console.log(card)
+  const card = allRecipes.recipes.find(recipe => recipe.id === click)
+  if (card) {
     showRecipe(card)
   }
 }
 
 function cardPress() {
-  console.log(event.target)
-  if(event.target.id === 'exitRecipe') {
+  if (event.target.id === 'exitRecipe') {
     recipeInfo.innerHTML = ''
     unhideRecipeCard()
-  } else if (event.target.id === 'flipRecipe'){
+  } else if (event.target.id === 'flipRecipe') {
     showInstructions()
     recipeInfo.classList.toggle('hidden')
   }
@@ -102,6 +102,5 @@ function showKitchen() {
 
 function updateRecipeImages() {
   allRecipes.filterRecipesViaName(searchBar.value);
-  console.log(searchBar.value.split('  '))
   allRecipes.filterRecipesViaTags(searchBar.value.split('  '))
 }

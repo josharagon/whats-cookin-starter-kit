@@ -11,17 +11,24 @@ function filterRecipesViaTags(tags) {
     }
     return recipes
   }, [])
+  if (!search.length) {
+    search.push({
+      id: 'none',
+      name: 'No Recipes Found',
+      image: './images/PenguinChef.png'
+    })
+  }
   showRecipeImages(search);
-  return search 
-};
+  return search
+}
 
 
 function filterRecipesViaName(itemName) {
   let search = this.recipes.filter(recipe =>
     recipe.returnIngredientNames(ingredientsData).join(', ').includes(itemName.toUpperCase()) ||
     recipe.name.toUpperCase().includes(itemName.toUpperCase()));
-    recipeChart.innerHTML = ''
-    showRecipeImages(search);
-    const results = search.map(result => result.name);
-    return results
-};
+  recipeChart.innerHTML = ''
+  showRecipeImages(search);
+  const results = search.map(result => result.name);
+  return results
+}
