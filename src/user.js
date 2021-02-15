@@ -6,6 +6,8 @@ class User {
     this.favorites = [],
     this.savedRecipes = []
   }
+  
+
 }
 
 module.exports = User;

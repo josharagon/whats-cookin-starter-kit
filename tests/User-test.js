@@ -46,7 +46,7 @@ describe('User', function() {
       return new Recipe(recipe)
     }))
 
-     xit('should be able to favorite/unfavorite recipes', function() {
+     it('should be able to favorite/unfavorite recipes', function() {
        newUser.addToFavorites(595736);
        expect(newUser.favorites).to.deep.equal([userRecipes[0]])
      })
