@@ -7,23 +7,23 @@ const recipesBox = document.querySelector('#recipesBox');
 const recipeCard = document.querySelector('#recipeCard');
 const recipeInfo = document.querySelector('#recipeInfo');
 const instructions = document.querySelector('#instructions');
-const searchBar = document.querySelector('.search-bar');
 
 nav.addEventListener('click', navPress)
+nav.addEventListener('keydown', navPress)
 recipeChart.addEventListener('click', mainPress)
 recipeCard.addEventListener('click', cardPress)
-searchBar.addEventListener('keydown', updateRecipeImages);
 window.addEventListener('load', instantiate)
 
 function instantiate() {
   instantiateRecipeRepository();
+  console.log(allRecipes)
   showRecipeImages(allRecipes.recipes);
 }
 
 function instantiateRecipeRepository() {
   const recipes = recipeData.map(recipe => {
-    let thisRecipe = new Recipe(recipe)
-    return thisRecipe;
+    var recipe = new Recipe(recipe)
+    return recipe;
   })
   allRecipes = new RecipeRepository(recipes)
 }
@@ -38,27 +38,29 @@ function showRecipeImages(recipes) {
 }
 
 function navPress() {
+  console.log(event.target.id)
   if (event.target.id === 'whatsCookin') {
     showKitchen()
-  }
-  if (event.target.id === 'searchBar') {
-    updateRecipeImages(allRecipes)
+  } else if (event.target.id === 'searchBar') {
+    updateRecipeImages()
   }
 }
 
 function mainPress() {
   let click = event.target.id;
-  const card = allRecipes.recipes.find(recipe => recipe.id === click)
-  if (card) {
+  const card = allRecipes.recipes.find(recipe => recipe.id == click)
+  if(card) {
+    console.log(card)
     showRecipe(card)
   }
 }
 
 function cardPress() {
-  if (event.target.id === 'exitRecipe') {
+  console.log(event.target)
+  if(event.target.id === 'exitRecipe') {
     recipeInfo.innerHTML = ''
     unhideRecipeCard()
-  } else if (event.target.id === 'flipRecipe') {
+  } else if (event.target.id === 'flipRecipe'){
     showInstructions()
     recipeInfo.classList.toggle('hidden')
   }
@@ -101,6 +103,6 @@ function showKitchen() {
 }
 
 function updateRecipeImages() {
-  allRecipes.filterRecipesViaName(searchBar.value);
-  allRecipes.filterRecipesViaTags(searchBar.value.split('  '))
+  allRecipes.filterRecipesViaName('recipes', searchBar.value);
+  allRecipes.filterRecipesViaTags('recipes', searchBar.value.split('  '))
 }

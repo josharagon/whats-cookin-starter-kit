@@ -71,18 +71,18 @@ describe('User', function() {
        expect(newUser.savedRecipes).to.deep.equal([allRecipes.recipes[0]])
      })
 
-     xit('should be able to filter favorited recipes by one or more tags', function() {
-       newUser.addToFavorites(595736)
-       newUser.addToFavorites(678353)
-       //expect(newUser.filterFavoriteRecipesViaTags(['testMultiple1', 'testMultiple2'])).to.deep.equal(
-         //[testRecipes[0]])
+     it('should be able to filter favorited recipes by one or more tags', function() {
+       newUser.addRecipe('favorites',allRecipes,595736)
+       newUser.addRecipe('favorites',allRecipes,678353)
+       expect(newUser.filterRecipesViaTags('favorites', ['testMultiple1', 'testMultiple2'])).to.deep.equal(
+         [testRecipes[0]])
      })
 
      xit('should be able to search saved recipes by name or ingredients', function() {
-       newUser.addToFavorites(595736)
-       newUser.addToFavorites(678353)
-       newUser.addToFavorites(741603)
-       expect(newUser.searchSavedRecipesViaName(['Dijon'])).to.deep.equal([userRecipes[0], userRecipes[1]])
+       newUser.addRecipe('savedRecipes',allRecipes,595736)
+       newUser.addRecipe('savedRecipes',allRecipes,678353)
+       newUser.addRecipe('savedRecipes',allRecipes,741603)
+       expect(newUser.filterRecipesViaName('savedRecipes', ['Dijon'])).to.deep.equal([userRecipes[0], userRecipes[1]])
      })
   })
 })
