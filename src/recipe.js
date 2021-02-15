@@ -15,7 +15,7 @@ class Recipe {
   returnIngredientNames(ourIngredients)  {
     const names = ourIngredients.reduce((ingredientNames, item) => {
       if (this.ingredientCodes.includes(item.id)) {
-        ingredientNames.push(item.name);
+        ingredientNames.push(item.name.toUpperCase());
       }
       return ingredientNames;
     }, [])
