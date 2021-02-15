@@ -144,6 +144,9 @@ transform: translate(-50%, -50%);
 .search-bar {
   justify-self: center;
   width: 50%;
+  color: #B0B8B4FF;
+  background-color: #184A45FF;
+  border-radius: 3px;
 }
 
 
