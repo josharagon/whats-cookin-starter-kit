@@ -22,8 +22,8 @@ function instantiate() {
 
 function instantiateRecipeRepository() {
   const recipes = recipeData.map(recipe => {
-    let recipe = new Recipe(recipe)
-    return recipe;
+    let thisRecipe = new Recipe(recipe)
+    return thisRecipe;
   })
   allRecipes = new RecipeRepository(recipes)
 }
