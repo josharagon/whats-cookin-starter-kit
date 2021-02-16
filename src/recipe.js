@@ -37,7 +37,11 @@ class Recipe {
   }
 
   returnInstructions() {
-    return this.instructions;
+    let stringInstructions = ' '
+    this.instructions.forEach(instruction => {
+      stringInstructions += `${instruction.number}. ${instruction.instruction} </br> </br>`
+    });
+    return stringInstructions;
   }
 }
 
