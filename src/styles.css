@@ -158,12 +158,25 @@ left: 50%;
 transform: translate(-50%, -50%);
 }
 
+.favorite {
+  filter:brightness(100%);
+  position: absolute;
+  top: 5px;
+  left: 10px;
+  color: #FC766AFF;
+  margin: 0;
+  font-size: x-large;
+  cursor: pointer;
+}
 
 /* NAV BAR */
 
 .search-bar {
   justify-self: center;
   width: 50%;
+  color: #B0B8B4FF;
+  background-color: #184A45FF;
+  border-radius: 3px;
 }
 
 .home-recipes {
