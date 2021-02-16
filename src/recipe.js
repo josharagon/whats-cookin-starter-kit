@@ -43,6 +43,20 @@ class Recipe {
     });
     return stringInstructions;
   }
+
+  returnIngredients() {
+    let stringIngredients = ' '
+    this.ingredients.forEach(ingredient => {
+      let ingName;
+      ingredientsData.forEach(searchIngredient => {
+        if (ingredient.id === searchIngredient.id) {
+          ingName = searchIngredient.name;
+        }
+      })
+      stringIngredients += `${ingredient.quantity.amount} ${ingredient.quantity.unit} ${ingName} </br> </br>`
+    });
+    return stringIngredients;
+  }
 }
 
 
