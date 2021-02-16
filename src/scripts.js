@@ -50,7 +50,7 @@ function navPress() {
 function mainPress() {
   let click = event.target.id;
   const card = allRecipes.recipes.find(recipe => recipe.id == click)
-  if (card) {
+  if (card && recipeCard.classList.contains('hidden')) {
     showRecipe(card)
   }
 }
