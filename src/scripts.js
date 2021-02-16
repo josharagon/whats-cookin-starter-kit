@@ -76,7 +76,7 @@ function showRecipe(recipe) {
   recipeFront.innerHTML += `<img src=${recipe.image} alt=${recipe.name}>
   <h2 class="recipeTitle card-text">${recipe.name}</h2>
   <h3 class="cost card-text">Cost: $${recipe.returnTotalCost(ingredientsData)}</h3>
-  <h4 class="cost card-text">Ingredients: ${recipe.returnIngredientNames(ingredientsData)}</h4>`
+  <h4 class="cost card-text"><u>Ingredients:</u> </br> ${recipe.returnIngredients()}</h4>`
   recipeBack.innerHTML += `<p class="instruction-text"> ${recipe.returnInstructions()} </p>`
 }
 
