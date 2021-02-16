@@ -17,7 +17,6 @@ window.addEventListener('load', instantiate)
 
 function instantiate() {
   instantiateRecipeRepository();
-  console.log(allRecipes)
   showRecipeImages(allRecipes.recipes);
 }
 
@@ -32,14 +31,13 @@ function instantiateRecipeRepository() {
 function showRecipeImages(recipes) {
   recipes.forEach(recipe => {
     recipeChart.innerHTML += `<div class="recipe-image" id=${recipe.id}>
-      <img src=${recipe.image} id=${recipe.id} alt=${recipe.name}>
-      <div class="centered" id=${recipe.id}>${recipe.name}</div>
+      <img src=${recipe.image} alt=${recipe.name}>
+      <div class="centered" >${recipe.name}</div>
     </div>`
   })
 }
 
 function navPress() {
-  console.log(event.target.id)
   if (event.target.id === 'whatsCookin') {
     showKitchen()
   } else if (event.target.id === 'searchBar') {
@@ -48,7 +46,7 @@ function navPress() {
 }
 
 function mainPress() {
-  let click = event.target.id;
+  let click = event.target.parentNode.id;
   const card = allRecipes.recipes.find(recipe => recipe.id == click)
   if (card && recipeCard.classList.contains('hidden')) {
     showRecipe(card)
