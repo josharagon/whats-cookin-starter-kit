@@ -103,6 +103,7 @@ function showKitchen() {
 }
 
 function updateRecipeImages() {
-  allRecipes.filterRecipesViaName('recipes', searchBar.value);
-  allRecipes.filterRecipesViaTags('recipes', searchBar.value.split(' '));
+  if (allRecipes.filterRecipesViaName('recipes', searchBar.value).length === 0) {
+    allRecipes.filterRecipesViaTags('recipes', searchBar.value.split(' '));
+  }
 }
