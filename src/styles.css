@@ -98,6 +98,15 @@ text-shadow: 0px 1px #184A45FF,
 -1px 0px #184A45FF;
 }
 
+.recipe-info {
+  height: 476px;
+  overflow-y: scroll;
+}
+
+.instruction-text {
+  color: #184A45FF;
+}
+
 .card-text {
 color: #184A45FF;
 }
@@ -272,7 +281,7 @@ transition: max-height 0.5s ease-out;
 /* VISIBILITY */
 
 .hidden {
-visibility:hidden;
+display:none;
 }
 
 .collapsed {
