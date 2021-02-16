@@ -99,7 +99,7 @@ text-shadow: 0px 1px #184A45FF,
 }
 
 .recipe-info {
-  height: 476px;
+  height: 100%;
   overflow-y: scroll;
 }
 
@@ -154,7 +154,6 @@ transform: translate(-50%, -50%);
   justify-self: center;
   width: 50%;
 }
-
 
 .home-recipes {
   justify-content: space-evenly;
