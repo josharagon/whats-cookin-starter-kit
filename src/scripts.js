@@ -5,7 +5,8 @@ const userKitchen = document.querySelector('#userDropdown');
 const recipeChart = document.querySelector('#recipes');
 const recipesBox = document.querySelector('#recipesBox');
 const recipeCard = document.querySelector('#recipeCard');
-const recipeInfo = document.querySelector('#recipeInfo');
+const recipeFront = document.querySelector('#recipeFront');
+const recipeBack = document.querySelector('#recipeBack')
 const instructions = document.querySelector('#instructions');
 
 nav.addEventListener('click', navPress)
@@ -49,39 +50,38 @@ function navPress() {
 function mainPress() {
   let click = event.target.id;
   const card = allRecipes.recipes.find(recipe => recipe.id == click)
-  if(card) {
-    console.log(card)
+  if (card) {
     showRecipe(card)
   }
 }
 
 function cardPress() {
-  console.log(event.target)
-  if(event.target.id === 'exitRecipe') {
-    recipeInfo.innerHTML = ''
+  if (event.target.id === 'exitRecipe') {
+    recipeFront.innerHTML = ''
+    recipeBack.innerHTML = ''
     unhideRecipeCard()
-  } else if (event.target.id === 'flipRecipe'){
+    if(!recipeBack.classList.contains('hidden')){
+      recipeFront.classList.toggle('hidden')
+      showInstructions()
+    }
+  } else if (event.target.id === 'flipRecipe') {
     showInstructions()
-    recipeInfo.classList.toggle('hidden')
+    recipeFront.classList.toggle('hidden')
   }
 }
 
 function showRecipe(recipe) {
   unhideRecipeCard()
-
-  recipeInfo.innerHTML += `<img src=${recipe.image} alt=${recipe.name}>
+  console.log(recipeFront)
+  recipeFront.innerHTML += `<img src=${recipe.image} alt=${recipe.name}>
   <h2 class="recipeTitle card-text">${recipe.name}</h2>
   <h3 class="cost card-text">Cost: $${recipe.returnTotalCost(ingredientsData)}</h3>
   <h4 class="cost card-text">Ingredients: ${recipe.returnIngredientNames(ingredientsData)}</h4>`
-  // <ol class="hidden" id="instructions">
-  // ${recipe.instructions.forEach(step => {
-  //   return `<li>${step.instruction}</li>`
-  // })}
-  // </ol>`
+  recipeBack.innerHTML += `<p class="instruction-text"> ${recipe.returnInstructions()} </p>`
 }
 
 function showInstructions(recipe) {
-//  instructions.classList.toggle('hidden')
+  recipeBack.classList.toggle('hidden')
 }
 
 function unhideRecipeCard() {
