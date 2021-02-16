@@ -10,7 +10,7 @@ const recipeBack = document.querySelector('#recipeBack')
 const instructions = document.querySelector('#instructions');
 
 nav.addEventListener('click', navPress)
-nav.addEventListener('keydown', navPress)
+nav.addEventListener('keyup', navPress)
 recipeChart.addEventListener('click', mainPress)
 recipeCard.addEventListener('click', cardPress)
 window.addEventListener('load', instantiate)
@@ -104,5 +104,5 @@ function showKitchen() {
 
 function updateRecipeImages() {
   allRecipes.filterRecipesViaName('recipes', searchBar.value);
-  allRecipes.filterRecipesViaTags('recipes', searchBar.value.split('  '))
+  allRecipes.filterRecipesViaTags('recipes', searchBar.value.split(' '));
 }
