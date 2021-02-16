@@ -40,6 +40,7 @@ function checkFavorites(recipeID) {
   // } else {
   //   return '☆'
   // }
+  return '☆';
 }
 
 function showRecipeImages(recipes) {
@@ -67,7 +68,7 @@ function showFavorites() {
 }
 
 function showRecipesToCook() {
-  
+
 }
 
 function mainPress() {
