@@ -103,6 +103,17 @@ text-shadow: 0px 1px #184A45FF,
   overflow-y: scroll;
 }
 
+.recipe-info::-webkit-scrollbar {
+  background-color: #FC766AFF;
+  width: 6px;
+}
+
+.recipe-info::-webkit-scrollbar-thumb {
+  background-color: #184A45FF;
+  border-radius: 4px;
+  width:4px;
+}
+
 .instruction-text {
   color: #184A45FF;
 }
@@ -212,6 +223,27 @@ transition: max-height 0.5s ease-out;
   height: 75%;
 }
 
+.you-can-make-list::-webkit-scrollbar {
+  background-color: #B0B8B4FF;
+  width: 6px;
+}
+
+.you-can-make-list::-webkit-scrollbar-thumb {
+  background-color: #FC766AFF;
+  border-radius: 4px;
+  width:4px;
+}
+
+.ingredient-list::-webkit-scrollbar {
+  background-color: #B0B8B4FF;
+  width: 6px;
+}
+
+.ingredient-list::-webkit-scrollbar-thumb {
+  background-color: #FC766AFF;
+  border-radius: 4px;
+  width:4px;
+}
 
 /* RECIPE SHOWCASE */
 
@@ -234,6 +266,17 @@ transition: max-height 0.5s ease-out;
   overflow-y: scroll;
   height:90%;
   margin: 0px 25px;
+}
+
+.random-recipe-bar::-webkit-scrollbar {
+  background-color: #184A45FF;
+  width: 9px;
+}
+
+.random-recipe-bar::-webkit-scrollbar-thumb {
+  background-color: #FC766AFF;
+  border-radius: 6px;
+  width:6px;
 }
 
 .dropbtn {
