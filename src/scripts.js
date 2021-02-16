@@ -60,6 +60,10 @@ function cardPress() {
     recipeFront.innerHTML = ''
     recipeBack.innerHTML = ''
     unhideRecipeCard()
+    if(!recipeBack.classList.contains('hidden')){
+      recipeFront.classList.toggle('hidden')
+      showInstructions()
+    }
   } else if (event.target.id === 'flipRecipe') {
     showInstructions()
     recipeFront.classList.toggle('hidden')
