@@ -8,10 +8,8 @@ class User {
     this.savedRecipes = []
   }
 
-  addRecipe(saveToHere, recipeRepo, recipeID) {
-    let ourRecipes = recipeRepo.recipes
-    let thisRecipe = ourRecipes.find(recipe => recipe.id == recipeID)
-    this[saveToHere].push(thisRecipe)
+  addRecipe(saveToHere, recipe) {
+    this[saveToHere].push(recipe)
   }
 
   removeRecipe(removeFromHere, recipeID) {

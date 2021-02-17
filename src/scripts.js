@@ -88,13 +88,14 @@ function cardPress() {
   }
 }
 
+
 function changeFavorite() {
   const list = [...recipeFront.childNodes]
   let fave = list.find(child => child.title == "Favorite")
   let thisRecipe = allRecipes.recipes.find(recipe => fave.id == recipe.id)
   if (fave.innerText === '☆') {
     thisRecipe.favorited = '★'
-    currentUser.addRecipe('favorites', allRecipes, fave.id);
+    currentUser.addRecipe('favorites', thisRecipe);
     fave.innerText = '★'
     console.log(this)
   } else {
@@ -105,7 +106,16 @@ function changeFavorite() {
   updateAllRecipes();
 }
 
-function changeSaved()
+function changeSaved() {
+  const list = [...recipeFront.childNodes]
+  let fave = list.find(child => child.title == "Favorite")
+  let thisRecipe = allRecipes.recipes.find(recipe => fave.id == recipe.id)
+  console.log(thisRecipe)
+  if (!currentUser.savedRecipes.includes(thisRecipe)) {
+    currentUser.addRecipe('savedRecipes', thisRecipe);
+  }
+  updateAllRecipes();
+}
 
 function updateAllRecipes() {
   showRecipeImages(recipeChart, allRecipes.recipes);
@@ -134,7 +144,6 @@ function unhideRecipeCard() {
 function showKitchen() {
   document.querySelector('#whatsCookin').classList.toggle("active");
   userKitchen.classList.toggle("collapsed");
-  updateAllRecipes();
   if (userKitchen.style.maxHeight) {
     userKitchen.style.maxHeight = null;
     userKitchen.style.height = null;
