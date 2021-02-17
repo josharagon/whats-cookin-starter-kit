@@ -7,6 +7,7 @@ class Recipe {
     this.instructions = recipe.instructions,
     this.tags = recipe.tags,
     this.image = recipe.image,
+    this.favorited = '☆',
     this.ingredientCodes = recipe.ingredients.map((item) => {
       return item.id
     });

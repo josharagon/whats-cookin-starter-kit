@@ -89,6 +89,7 @@ box-shadow:
 
 .exit-recipe-btn {
 position: absolute;
+font-size: medium;
 top: 0px;
 right:0px;
 border: 0px solid black;
@@ -104,6 +105,7 @@ text-shadow: 0px 1px #184A45FF,
 
 .flip-recipe-btn{
 position: absolute;
+font-size: large;
 bottom: 0px;
 right:0px;
 border: 0px solid black;
@@ -115,6 +117,25 @@ text-shadow: 0px 1px #184A45FF,
 0px -1px #184A45FF,
 1px 0px #184A45FF,
 -1px 0px #184A45FF;
+transition: .5s ease;
+}
+
+.save-recipe-btn {
+  position: absolute;
+  cursor: pointer;
+  bottom: 5px;
+  left: 50%;
+  background-color: transparent;
+  border: 2px solid #FC766AFF;
+  text-shadow: 0px 0px 5px #184A45FF;
+  color: #FC766AFF;
+  border-radius: 5px;
+  transform: translate(-50%);
+  transition: .5s ease
+}
+
+.save-recipe-btn:hover {
+  background-color: #184A45FF;
 }
 
 .exit-recipe-btn:hover{
@@ -125,10 +146,7 @@ text-shadow: 0px 3px #184A45FF,
 }
 
 .flip-recipe-btn:hover {
-text-shadow: 0px 1px #184A45FF,
-0px -1px #184A45FF,
-1px 0px #184A45FF,
--1px 0px #184A45FF;
+text-shadow: 5px 0px #184A45FF;
 }
 
 .recipe-info {
@@ -155,7 +173,20 @@ text-shadow: 0px 1px #184A45FF,
 color: #184A45FF;
 }
 
+.favorite {
+  text-shadow: 0px 1px #184A45FF,
+  0px -1px #184A45FF,
+  1px 0px #184A45FF,
+  -1px 0px #184A45FF;
+  transition: .5s ease;
+}
 
+.favorite:hover {
+  text-shadow: 0px 3px #184A45FF,
+  0px -3px #184A45FF,
+  3px 0px #184A45FF,
+  -3px 0px #184A45FF;
+}
 
 
 /* RECIPE IMAGES */
@@ -253,7 +284,7 @@ max-height: 0;
 transition: max-height 0.5s ease-out; */
 }
 
-.owned-ingredients, .you-can-make {
+.saved-recipes, .you-can-make {
   text-align-last: center;
   justify-self: center;
   height: 100%;
@@ -263,32 +294,43 @@ transition: max-height 0.5s ease-out; */
   color: #184A45FF;
 }
 
-.ingredient-list, .you-can-make-list {
+.recipes-to-cook, .favorited-recipes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   overflow: hidden;
   overflow-y: scroll;
   height: 75%;
 }
 
-.you-can-make-list::-webkit-scrollbar {
+.favorited-recipes::-webkit-scrollbar {
   background-color: #B0B8B4FF;
   width: 6px;
 }
 
-.you-can-make-list::-webkit-scrollbar-thumb {
+.favorited-recipes::-webkit-scrollbar-thumb {
   background-color: #FC766AFF;
   border-radius: 4px;
   width:4px;
 }
 
-.ingredient-list::-webkit-scrollbar {
+.recipes-to-cook::-webkit-scrollbar {
   background-color: #B0B8B4FF;
   width: 6px;
 }
 
-.ingredient-list::-webkit-scrollbar-thumb {
+.recipes-to-cook::-webkit-scrollbar-thumb {
   background-color: #FC766AFF;
   border-radius: 4px;
   width:4px;
+}
+
+.favorited-recipes .recipe-image {
+  width: 200px;
+}
+
+.recipes-to-cook .recipe-image {
+  width: 200px;
 }
 
 /* RECIPE SHOWCASE */
@@ -324,6 +366,10 @@ transition: max-height 0.5s ease-out; */
   border-radius: 6px;
   width:6px;
 }
+
+
+
+/* DROPDOWN */
 
 .dropbtn {
   background-color: rgba(0,0,0,0.0);

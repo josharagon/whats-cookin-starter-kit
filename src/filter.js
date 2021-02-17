@@ -19,7 +19,7 @@ function filterRecipesViaTags(searchedRecipes, tags) {
       image: './images/PenguinChef.png'
     })
   }
-  showRecipeImages(search);
+  showRecipeImages(recipeChart, search);
   return search
 }
 
@@ -29,7 +29,7 @@ function filterRecipesViaName(searchedRecipes, itemName) {
     recipe.returnIngredientNames(ingredientsData).join(', ').includes(itemName.toUpperCase()) ||
     recipe.name.toUpperCase().includes(itemName.toUpperCase()));
   recipeChart.innerHTML = ''
-  showRecipeImages(search);
+  showRecipeImages(recipeChart, search);
   const results = search.map(result => result.name);
   return results
 }
