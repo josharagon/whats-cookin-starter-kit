@@ -2,6 +2,7 @@ let allRecipes = {}
 let currentUser = {}
 const nav = document.querySelector('#nav');
 const main = document.querySelector('#main')
+const greeting = document.querySelector('#welcome')
 const userKitchen = document.querySelector('#userDropdown');
 const recipeChart = document.querySelector('#recipes');
 const recipesBox = document.querySelector('#recipesBox');
@@ -34,6 +35,7 @@ function instantiateRecipeRepository() {
 function getRandomUser() {
   currentUser = new User (usersData[Math.floor(Math.random()*Math.floor(usersData.length))])
   console.log(currentUser)
+  welcome.innerText = `Welcome Back, ${currentUser.name}!`
 }
 
 

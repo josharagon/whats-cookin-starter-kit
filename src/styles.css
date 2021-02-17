@@ -220,7 +220,7 @@ max-height: 0;
 transition: max-height 0.5s ease-out;
 }
 
-.owned-ingredients, .you-can-make {
+.saved-recipes, .you-can-make {
   text-align-last: center;
   justify-self: center;
   height: 100%;
@@ -230,7 +230,10 @@ transition: max-height 0.5s ease-out;
   color: #184A45FF;
 }
 
-.ingredient-list, .favorited-recipes {
+.recipes-to-cook, .favorited-recipes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   overflow: hidden;
   overflow-y: scroll;
   height: 75%;
@@ -247,15 +250,23 @@ transition: max-height 0.5s ease-out;
   width:4px;
 }
 
-.ingredient-list::-webkit-scrollbar {
+.recipes-to-cook::-webkit-scrollbar {
   background-color: #B0B8B4FF;
   width: 6px;
 }
 
-.ingredient-list::-webkit-scrollbar-thumb {
+.recipes-to-cook::-webkit-scrollbar-thumb {
   background-color: #FC766AFF;
   border-radius: 4px;
   width:4px;
+}
+
+.favorited-recipes .recipe-image {
+  width: 50%;
+}
+
+.recipes-to-cook .recipe-image {
+  width: 50%;
 }
 
 /* RECIPE SHOWCASE */
@@ -292,15 +303,7 @@ transition: max-height 0.5s ease-out;
   width:6px;
 }
 
-.favorited-recipes {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
 
-.favorited-recipes .recipe-image {
-  width: 50%;
-}
 
 /* DROPDOWN */
 
