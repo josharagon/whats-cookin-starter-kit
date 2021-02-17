@@ -36,28 +36,13 @@ function getRandomUser() {
   console.log(currentUser)
 }
 
-function checkFavorites(recipeID) {
-  let match
-   currentUser.favorites.forEach(recipe => {
-    if (recipe.id === recipeID) {
-      match = true;
-    }
-  })
-  console.log('match', match)
-  if (match) {
-    return '★'
-    console.log('favorited')
-  } else {
-    return '☆'
-    console.log('unfavorited')
-  }
-}
 
 function showRecipeImages(destination, recipes) {
+  destination.innerHTML = '';
   recipes.forEach(recipe => {
     destination.innerHTML += `<div class="recipe-image" id=${recipe.id}>
       <img src=${recipe.image} alt=${recipe.name}>
-      <p class="favorite">${checkFavorites(recipe.id)}</p>
+      <p class="favorite">${recipe.favorited}</p>
       <p class="centered" >${recipe.name}</p>
     </div>`
   })
@@ -109,10 +94,14 @@ function cardPress() {
 function changeFavorite() {
   const list = [...recipeFront.childNodes]
   let fave = list.find(child => child.title == "Favorite")
+  let thisRecipe = allRecipes.recipes.find(recipe => fave.id == recipe.id)
   if (fave.innerText === '☆') {
+    thisRecipe.favorited = '★'
     currentUser.addRecipe('favorites', allRecipes, fave.id);
     fave.innerText = '★'
+    console.log(this)
   } else {
+    thisRecipe.favorited = '☆'
     currentUser.removeRecipe('favorites', fave.id);
     fave.innerHTML = '☆'
   }
@@ -124,7 +113,7 @@ function changeFavorite() {
 function showRecipe(recipe) {
   unhideRecipeCard()
   recipeFront.innerHTML += `<img src=${recipe.image} alt=${recipe.name}>
-  <p class="favorite" id="${recipe.id}" title="Favorite">${checkFavorites(recipe.id)}</p>
+  <p class="favorite" id="${recipe.id}" title="Favorite">${recipe.favorited}</p>
   <h2 class="recipeTitle card-text">${recipe.name}</h2>
   <h3 class="cost card-text">Cost: $${recipe.returnTotalCost(ingredientsData)}</h3>
   <h4 class="cost card-text"><u>Ingredients:</u> </br> ${recipe.returnIngredients()}</h4>`

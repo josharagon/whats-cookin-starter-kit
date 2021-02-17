@@ -17,7 +17,7 @@ class User {
   removeRecipe(removeFromHere, recipeID) {
     let count = 0;
     this[removeFromHere].forEach(recipe => {
-      if (recipe.id === recipeID) {
+      if (recipe.id == recipeID) {
         this[removeFromHere].splice(count, 1)
         return;
       }
