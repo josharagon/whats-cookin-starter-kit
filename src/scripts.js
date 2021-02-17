@@ -14,6 +14,7 @@ const star = document.querySelector('#favoriteRecipe');
 
 nav.addEventListener('click', navPress)
 nav.addEventListener('keyup', navPress)
+userKitchen.addEventListener('click', mainPress)
 recipeChart.addEventListener('click', mainPress)
 recipeCard.addEventListener('click', cardPress)
 window.addEventListener('load', instantiate)
@@ -53,20 +54,12 @@ function showRecipeImages(destination, recipes) {
 function navPress() {
   if (event.target.id === 'whatsCookin') {
     showKitchen()
-    showFavorites()
-    showRecipesToCook()
+
   } else if (event.target.id === 'searchBar') {
     updateRecipeImages()
   }
 }
 
-function showFavorites() {
-
-}
-
-function showRecipesToCook() {
-
-}
 
 function mainPress() {
   let click = event.target.parentNode.id;
@@ -90,6 +83,8 @@ function cardPress() {
     recipeFront.classList.toggle('hidden')
   } else if (event.target.title === 'Favorite') {
     changeFavorite()
+  } else if( event.target.id === 'saveRecipe') {
+    changeSaved()
   }
 }
 
@@ -107,10 +102,16 @@ function changeFavorite() {
     currentUser.removeRecipe('favorites', fave.id);
     fave.innerHTML = '☆'
   }
-  showRecipeImages(recipeChart, allRecipes.recipes)
+  updateAllRecipes();
 }
 
+function changeSaved()
 
+function updateAllRecipes() {
+  showRecipeImages(recipeChart, allRecipes.recipes);
+  showRecipeImages(userKitchen.children[1].children[1], currentUser.favorites);
+  showRecipeImages(userKitchen.children[0].children[1], currentUser.savedRecipes);
+}
 
 function showRecipe(recipe) {
   unhideRecipeCard()
@@ -133,7 +134,7 @@ function unhideRecipeCard() {
 function showKitchen() {
   document.querySelector('#whatsCookin').classList.toggle("active");
   userKitchen.classList.toggle("collapsed");
-  showRecipeImages(userKitchen.children[1].children[1], currentUser.favorites)
+  updateAllRecipes();
   if (userKitchen.style.maxHeight) {
     userKitchen.style.maxHeight = null;
     userKitchen.style.height = null;

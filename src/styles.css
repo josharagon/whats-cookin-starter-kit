@@ -56,6 +56,7 @@ box-shadow:
 
 .exit-recipe-btn {
 position: absolute;
+font-size: medium;
 top: 0px;
 right:0px;
 border: 0px solid black;
@@ -71,6 +72,7 @@ text-shadow: 0px 1px #184A45FF,
 
 .flip-recipe-btn{
 position: absolute;
+font-size: large;
 bottom: 0px;
 right:0px;
 border: 0px solid black;
@@ -82,6 +84,25 @@ text-shadow: 0px 1px #184A45FF,
 0px -1px #184A45FF,
 1px 0px #184A45FF,
 -1px 0px #184A45FF;
+transition: .5s ease;
+}
+
+.save-recipe-btn {
+  position: absolute;
+  cursor: pointer;
+  bottom: 5px;
+  left: 50%;
+  background-color: transparent;
+  border: 2px solid #FC766AFF;
+  text-shadow: 0px 0px 5px #184A45FF;
+  color: #FC766AFF;
+  border-radius: 5px;
+  transform: translate(-50%);
+  transition: .5s ease
+}
+
+.save-recipe-btn:hover {
+  background-color: #184A45FF;
 }
 
 .exit-recipe-btn:hover{
@@ -92,10 +113,7 @@ text-shadow: 0px 3px #184A45FF,
 }
 
 .flip-recipe-btn:hover {
-text-shadow: 0px 1px #184A45FF,
-0px -1px #184A45FF,
-1px 0px #184A45FF,
--1px 0px #184A45FF;
+text-shadow: 5px 0px #184A45FF;
 }
 
 .recipe-info {
@@ -122,7 +140,20 @@ text-shadow: 0px 1px #184A45FF,
 color: #184A45FF;
 }
 
+.favorite {
+  text-shadow: 0px 1px #184A45FF,
+  0px -1px #184A45FF,
+  1px 0px #184A45FF,
+  -1px 0px #184A45FF;
+  transition: .5s ease;
+}
 
+.favorite:hover {
+  text-shadow: 0px 3px #184A45FF,
+  0px -3px #184A45FF,
+  3px 0px #184A45FF,
+  -3px 0px #184A45FF;
+}
 
 
 /* RECIPE IMAGES */
