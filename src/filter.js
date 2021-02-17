@@ -23,9 +23,7 @@ function filterRecipesViaTags(searchedRecipes, tags) {
   return search
 }
 
-
 function filterRecipesViaName(searchedRecipes, itemName) {
-  console.log(itemName)
   recipeChart.innerHTML = ''
   let search = this[searchedRecipes].filter(recipe =>
     recipe.returnIngredientNames(ingredientsData).join(', ').includes(itemName.toUpperCase()) ||

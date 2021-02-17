@@ -2,12 +2,10 @@ const chai = require('chai');
 const expect = chai.expect;
 const testUser = require('./test-user');
 const testRecipes = require('./test-recipes')
-const filterRecipesViaName = require('../src/filter.js');
-const filterRecipesViaTags = require('../src/filter.js');
 const Recipe = require('../src/recipe');
 const RecipeRepository = require('../src/reciperepository')
 const User = require('../src/user');
-
+const ingredientsData = require('../data/ingredients')
 describe('User', function() {
   let newUser;
 
@@ -47,7 +45,7 @@ describe('User', function() {
     let allRecipes = new RecipeRepository(testRecipes.map(recipe => {
       return new Recipe(recipe)
     }))
-
+    
      it('should be able to add favorite recipes', function() {
        newUser.addRecipe('favorites', allRecipes, 595736);
        expect(newUser.favorites).to.deep.equal([allRecipes.recipes[0]])
@@ -74,15 +72,15 @@ describe('User', function() {
      it('should be able to filter favorited recipes by one or more tags', function() {
        newUser.addRecipe('favorites',allRecipes,595736)
        newUser.addRecipe('favorites',allRecipes,678353)
-       expect(newUser.filterRecipesViaTags('favorites', ['testMultiple1', 'testMultiple2'])).to.deep.equal(
-         [testRecipes[0]])
+       expect(newUser.filterFavoritesViaTags('favorites', ['testMultiple1', 'testMultiple2'])[0]).to.equal(
+         allRecipes.recipes[0])
      })
 
-     xit('should be able to search saved recipes by name or ingredients', function() {
+     it('should be able to search saved recipes by name or ingredients', function() {
        newUser.addRecipe('savedRecipes',allRecipes,595736)
        newUser.addRecipe('savedRecipes',allRecipes,678353)
        newUser.addRecipe('savedRecipes',allRecipes,741603)
-       expect(newUser.filterRecipesViaName('savedRecipes', ['Dijon'])).to.deep.equal([userRecipes[0], userRecipes[1]])
+       expect(newUser.filterFavoritesViaName('savedRecipes', 'Dijon', ingredientsData)).to.deep.equal([allRecipes.recipes[0].name, allRecipes.recipes[1].name])
      })
   })
 })
