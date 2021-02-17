@@ -1,3 +1,22 @@
+@media screen and (max-width:640px) {
+  img {width: 480%;}
+  .random-recipe-bar{display: list-item;}
+  .centered{top: 40%; left: 240%;}
+
+}
+
+@media screen and (min-width: 641px) {
+  .random-recipe-bar{display: flex;}
+  img {width: 115%;}
+  .centered{top: 50%; left: 50%;}
+}
+
+@media screen and (min-width: 1008px) {
+  .random-recipe-bar{display: flex;}
+  img {width: 100%;}
+  .centered{top: 50%; left: 50%;}
+}
+
 *{
   font-family: 'Bebas Neue', cursive;
 }
@@ -27,9 +46,9 @@ main {
   width: 100%;
 }
 
-img {
+/* img {
   width: 100%;
-}
+} */
 
 ul {
 padding-left: 20px;
@@ -153,8 +172,8 @@ text-shadow: 0px 1px #184A45FF,
 
 .centered {
 position: absolute;
-top: 50%;
-left: 50%;
+/* top: 50%;
+left: 50%; */
 transform: translate(-50%, -50%);
 }
 
@@ -271,7 +290,7 @@ transition: max-height 0.5s ease-out;
 }
 
 .random-recipe-bar {
-  display: flex;
+  /* display: flex; */
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
