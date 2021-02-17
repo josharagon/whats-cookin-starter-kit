@@ -142,6 +142,7 @@ function unhideRecipeCard() {
 function showKitchen() {
   document.querySelector('#whatsCookin').classList.toggle("active");
   userKitchen.classList.toggle("collapsed");
+  showRecipeImages(userKitchen.children[1].children[1], currentUser.favorites)
   if (userKitchen.style.maxHeight) {
     userKitchen.style.maxHeight = null;
     userKitchen.style.height = null;

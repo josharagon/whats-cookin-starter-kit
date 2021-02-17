@@ -230,18 +230,18 @@ transition: max-height 0.5s ease-out;
   color: #184A45FF;
 }
 
-.ingredient-list, .you-can-make-list {
+.ingredient-list, .favorited-recipes {
   overflow: hidden;
   overflow-y: scroll;
   height: 75%;
 }
 
-.you-can-make-list::-webkit-scrollbar {
+.favorited-recipes::-webkit-scrollbar {
   background-color: #B0B8B4FF;
   width: 6px;
 }
 
-.you-can-make-list::-webkit-scrollbar-thumb {
+.favorited-recipes::-webkit-scrollbar-thumb {
   background-color: #FC766AFF;
   border-radius: 4px;
   width:4px;
@@ -291,6 +291,18 @@ transition: max-height 0.5s ease-out;
   border-radius: 6px;
   width:6px;
 }
+
+.favorited-recipes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.favorited-recipes .recipe-image {
+  width: 50%;
+}
+
+/* DROPDOWN */
 
 .dropbtn {
   background-color: rgba(0,0,0,0.0);
