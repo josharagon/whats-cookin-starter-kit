@@ -1,4 +1,5 @@
 let allRecipes = {}
+let currentUser = {}
 const nav = document.querySelector('#nav');
 const main = document.querySelector('#main')
 const userKitchen = document.querySelector('#userDropdown');
@@ -18,7 +19,8 @@ window.addEventListener('load', instantiate)
 
 function instantiate() {
   instantiateRecipeRepository();
-  showRecipeImages(allRecipes.recipes);
+  getRandomUser();
+  showRecipeImages(recipeChart, allRecipes.recipes);
 }
 
 function instantiateRecipeRepository() {
@@ -29,23 +31,31 @@ function instantiateRecipeRepository() {
   allRecipes = new RecipeRepository(recipes)
 }
 
-function checkFavorites(recipeID) {
-  // let match = user.favorites.find(recipe => {
-  //   if (recipe.id === recipeId) {
-  //     return true;
-  //   }
-  // })
-  // if (match) {
-  //   return '★'
-  // } else {
-  //   return '☆'
-  // }
-  return '☆';
+function getRandomUser() {
+  currentUser = new User (usersData[Math.floor(Math.random()*Math.floor(usersData.length))])
+  console.log(currentUser)
 }
 
-function showRecipeImages(recipes) {
+function checkFavorites(recipeID) {
+  let match
+   currentUser.favorites.forEach(recipe => {
+    if (recipe.id === recipeID) {
+      match = true;
+    }
+  })
+  console.log('match', match)
+  if (match) {
+    return '★'
+    console.log('favorited')
+  } else {
+    return '☆'
+    console.log('unfavorited')
+  }
+}
+
+function showRecipeImages(destination, recipes) {
   recipes.forEach(recipe => {
-    recipeChart.innerHTML += `<div class="recipe-image" id=${recipe.id}>
+    destination.innerHTML += `<div class="recipe-image" id=${recipe.id}>
       <img src=${recipe.image} alt=${recipe.name}>
       <p class="favorite">${checkFavorites(recipe.id)}</p>
       <p class="centered" >${recipe.name}</p>
@@ -91,27 +101,30 @@ function cardPress() {
   } else if (event.target.id === 'flipRecipe') {
     showInstructions()
     recipeFront.classList.toggle('hidden')
-  } else if (event.target.id === 'favoriteRecipe') {
+  } else if (event.target.title === 'Favorite') {
     changeFavorite()
   }
 }
 
 function changeFavorite() {
   const list = [...recipeFront.childNodes]
-  let fave = list.find(child => child.id === 'favoriteRecipe')
+  let fave = list.find(child => child.title == "Favorite")
   if (fave.innerText === '☆') {
-    // function to update user class
-    // showRecipeImages(allRecipes.recipes)
+    currentUser.addRecipe('favorites', allRecipes, fave.id);
     fave.innerText = '★'
   } else {
+    currentUser.removeRecipe('favorites', fave.id);
     fave.innerHTML = '☆'
   }
+  showRecipeImages(recipeChart, allRecipes.recipes)
 }
+
+
 
 function showRecipe(recipe) {
   unhideRecipeCard()
   recipeFront.innerHTML += `<img src=${recipe.image} alt=${recipe.name}>
-  <p class="favorite" id="favoriteRecipe">${checkFavorites(recipe.id)}</p>
+  <p class="favorite" id="${recipe.id}" title="Favorite">${checkFavorites(recipe.id)}</p>
   <h2 class="recipeTitle card-text">${recipe.name}</h2>
   <h3 class="cost card-text">Cost: $${recipe.returnTotalCost(ingredientsData)}</h3>
   <h4 class="cost card-text"><u>Ingredients:</u> </br> ${recipe.returnIngredients()}</h4>`

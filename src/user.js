@@ -10,7 +10,7 @@ class User {
 
   addRecipe(saveToHere, recipeRepo, recipeID) {
     let ourRecipes = recipeRepo.recipes
-    let thisRecipe = ourRecipes.find(recipe => recipe.id === recipeID)
+    let thisRecipe = ourRecipes.find(recipe => recipe.id == recipeID)
     this[saveToHere].push(thisRecipe)
   }
 
@@ -47,7 +47,7 @@ class User {
     }
     return search
   }
-  
+
   filterFavoritesViaName(searchedRecipes, itemName, ingredientList) {
     let search = this[searchedRecipes].filter(recipe =>
       recipe.returnIngredientNames(ingredientList).join(', ').includes(itemName.toUpperCase()) ||
