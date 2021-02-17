@@ -84,7 +84,7 @@ function cardPress() {
     recipeFront.innerHTML = ''
     recipeBack.innerHTML = ''
     unhideRecipeCard()
-    if(!recipeBack.classList.contains('hidden')){
+    if (!recipeBack.classList.contains('hidden')) {
       recipeFront.classList.toggle('hidden')
       showInstructions()
     }
