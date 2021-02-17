@@ -1,5 +1,3 @@
-const filterRecipesViaName = require('../src/filter.js');
-const filterRecipesViaTags = require('../src/filter.js');
 
 class User {
   constructor(user) {
@@ -7,9 +5,7 @@ class User {
     this.id = user.id,
     this.pantry = user.pantry,
     this.favorites = [],
-    this.savedRecipes = [],
-    this.filterRecipesViaTags = filterRecipesViaTags,
-    this.filterRecipesViaName = filterRecipesViaName
+    this.savedRecipes = []
   }
 
   addRecipe(saveToHere, recipeRepo, recipeID) {
@@ -29,7 +25,41 @@ class User {
     })
   }
 
-
+  filterFavoritesViaTags(searchedRecipes, tags) {
+    // recipeChart.innerHTML = ''
+    const search =  this[searchedRecipes].reduce((recipes, recipe) => {
+      let count = 0;
+      tags.forEach(tag => {
+        if (recipe.tags.join(', ').includes(tag)) {
+          count += 1;
+        }
+      })
+      if (count === tags.length) {
+        recipes.push(recipe)
+      }
+      return recipes
+    }, [])
+    if (!search.length) {
+      search.push({
+        id: 'none',
+        name: 'No Recipes Found',
+        image: './images/PenguinChef.png'
+      })
+    }
+    // showRecipeImages(search);
+    return search
+  }
+  
+  filterFavoritesViaName(searchedRecipes, itemName, ingredientList) {
+    // recipeChart.innerHTML = ''
+    let search = this[searchedRecipes].filter(recipe =>
+      recipe.returnIngredientNames(ingredientList).join(', ').includes(itemName.toUpperCase()) ||
+      recipe.name.toUpperCase().includes(itemName.toUpperCase()));
+    // recipeChart.innerHTML = ''
+    // showRecipeImages(search)
+    const results = search.map(result => result.name);
+    return results
+  }
 
 }
 
