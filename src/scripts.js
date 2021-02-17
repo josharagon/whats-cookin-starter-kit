@@ -55,8 +55,10 @@ function navPress() {
   if (event.target.id === 'whatsCookin') {
     showKitchen()
 
+  } else if (event.target.id === 'searchBar' && !userKitchen.classList.contains('collapsed')) {
+    updateRecipeImages(currentUser, 'savedRecipes', userKitchen.children[0].children[1])
   } else if (event.target.id === 'searchBar') {
-    updateRecipeImages()
+    updateRecipeImages(allRecipes, 'recipes', recipeChart)
   }
 }
 
@@ -155,8 +157,8 @@ function showKitchen() {
   }
 }
 
-function updateRecipeImages() {
-  if (allRecipes.filterRecipesViaName('recipes', searchBar.value).length === 0) {
-    allRecipes.filterRecipesViaTags('recipes', searchBar.value.split(' '));
+function updateRecipeImages(instance, searchIn, destination) {
+  if (instance.filterRecipesViaName(searchIn, searchBar.value, destination).length === 0) {
+    instance.filterRecipesViaTags(searchIn, searchBar.value.split(' '), destination);
   }
 }

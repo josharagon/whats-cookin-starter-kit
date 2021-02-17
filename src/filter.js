@@ -1,4 +1,4 @@
-function filterRecipesViaTags(searchedRecipes, tags) {
+function filterRecipesViaTags(searchedRecipes, tags, destination) {
   recipeChart.innerHTML = ''
   const search =  this[searchedRecipes].reduce((recipes, recipe) => {
     let count = 0;
@@ -19,17 +19,17 @@ function filterRecipesViaTags(searchedRecipes, tags) {
       image: './images/PenguinChef.png'
     })
   }
-  showRecipeImages(recipeChart, search);
+  showRecipeImages(destination, search);
   return search
 }
 
-function filterRecipesViaName(searchedRecipes, itemName) {
+function filterRecipesViaName(searchedRecipes, itemName, destination) {
   recipeChart.innerHTML = ''
   let search = this[searchedRecipes].filter(recipe =>
     recipe.returnIngredientNames(ingredientsData).join(', ').includes(itemName.toUpperCase()) ||
     recipe.name.toUpperCase().includes(itemName.toUpperCase()));
   recipeChart.innerHTML = ''
-  showRecipeImages(recipeChart, search);
+  showRecipeImages(destination, search);
   const results = search.map(result => result.name);
   return results
 }
