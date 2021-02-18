@@ -1,57 +1,60 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta charset="UTF-8">
-    <title>Whats Cookin</title>
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-  </head>
-  <body>
-    <nav id="nav">
-      <input class="search-bar" id="searchBar" type="text" placeholder="Search by name or type of dish!">
-      <h1 type="button" class="main-header" id="whatsCookin">What's Cookin'?</h1>
-      <p class="welcome-back" id="welcome">Welcome, new user!</p>
-    </nav>
-    <main id="main">
-      <section class ="user-dropdown collapsed" id="userDropdown">
-        <article class="saved-recipes">
-          <h2>Recipes to Cook!</h2>
-          <div class="recipes-to-cook">
 
-          </div>
-        </article>
-        <aside class="you-can-make">
-          <h2>Recipes You Favorited!</h2>
-          <ul class="favorited-recipes">
-          </ul>
-        </aside>
-      </section>
-      <section class="recipe-card centered hidden" id="recipeCard">
-        <button type="button" class="exit-recipe-btn " id="exitRecipe">&#10006;</button>
-        <button type="button" class="flip-recipe-btn " id="flipRecipe">&#10150;</button>
-        <button type="button" class="save-recipe-btn" id="saveRecipe">Cook Later!</button>
-        <section class="recipe-info" id="recipeInfo">
-          <div class="recipe-front" id="recipeFront">
-          </div>
-          <div class="recipe-back hidden" id="recipeBack">
-          </div>
-        </section>
-      </section>
-      <article class="you-should-try" id="recipesBox">
-        <h1>Recipes You Should Try!</h1>
-        <div class="random-recipe-bar" id="recipes">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <title>Whats Cookin</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <nav id="nav">
+    <input class="search-bar" id="searchBar" type="text" placeholder="Search by name or type of dish!">
+    <h1 type="button" class="main-header" id="whatsCookin">What's Cookin'?</h1>
+    <p class="welcome-back" id="welcome">Welcome, new user!</p>
+  </nav>
+  <main id="main">
+    <section class="user-dropdown collapsed" id="userDropdown">
+      <article class="saved-recipes">
+        <h2>Recipes to Cook!</h2>
+        <div class="recipes-to-cook">
+
         </div>
       </article>
-    </main>
-    <script type="text/javascript" src="../data/users.js"></script>
-    <script type="text/javascript" src="../data/recipes.js"></script>
-    <script type="text/javascript" src="../data/ingredients.js"></script>
-    <script type="text/javascript" src="./recipe.js"></script>
-    <script type="text/javascript" src="./user.js"></script>
-    <script type="text/javascript" src="./reciperepository.js"></script>
-    <script type="text/javascript" src="./scripts.js"></script>
-    <script type="text/javascript" src="./filter.js"></script>
-  </body>
+      <aside class="you-can-make">
+        <h2>Recipes You Favorited!</h2>
+        <ul class="favorited-recipes">
+        </ul>
+      </aside>
+    </section>
+    <section class="recipe-card centered hidden" id="recipeCard">
+      <button type="button" class="exit-recipe-btn " id="exitRecipe">&#10006;</button>
+      <button type="button" class="flip-recipe-btn " id="flipRecipe">&#10150;</button>
+      <button type="button" class="save-recipe-btn" id="saveRecipe">Cook Later!</button>
+      <section class="recipe-info" id="recipeInfo">
+        <div class="recipe-front" id="recipeFront">
+        </div>
+        <div class="recipe-back hidden" id="recipeBack">
+        </div>
+      </section>
+    </section>
+    <article class="you-should-try" id="recipesBox">
+      <h1>Recipes You Should Try!</h1>
+      <div class="random-recipe-bar" id="recipes">
+      </div>
+    </article>
+  </main>
+  <script type="text/javascript" src="../data/users.js"></script>
+  <script type="text/javascript" src="../data/recipes.js"></script>
+  <script type="text/javascript" src="../data/ingredients.js"></script>
+  <script type="text/javascript" src="./recipe.js"></script>
+  <script type="text/javascript" src="./user.js"></script>
+  <script type="text/javascript" src="./reciperepository.js"></script>
+  <script type="text/javascript" src="./scripts.js"></script>
+  <script type="text/javascript" src="./filter.js"></script>
+</body>
+
 </html>

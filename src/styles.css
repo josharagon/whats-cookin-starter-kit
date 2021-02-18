@@ -1,4 +1,7 @@
 @media screen and (max-width:773px) {
+  body{
+    overflow-y:visible !important;
+  }
   .user-dropdown{display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -7,13 +10,18 @@
     padding: 0;
     max-height: 0;
     transition: max-height 0.5s ease-out;
-    transform: translate(26%, 0%);
     overflow-y: scroll;
-    min-width: 500px;
   }
+  .centered{position:fixed !important;}
   .welcome-back{font-size: 12px;width: 80px; padding-left: 15px;}
-  .you-should-try{height:27%}
-  
+  .you-should-try{height:27%; position: absolute !important; height: 50%;}
+  .random-recipe-bar {
+    overflow: unset !important;
+    overflow-y: unset !important ;
+  }
+  .recipe-card{
+    width: 300px !important;
+  }
 }
 
 @media screen and (min-width: 774px) {
@@ -276,15 +284,9 @@ content: '↑';
 
 
 /* DROPDOWN */
-
 .user-dropdown {
-/* display: flex;
-justify-content: center;
-width: 100%;
-box-sizing: border-box;
-padding: 0 50px 0 50px;
-max-height: 0;
-transition: max-height 0.5s ease-out; */
+  align-items: center;
+  width: 700px;
 }
 
 .saved-recipes, .you-can-make {
@@ -308,7 +310,7 @@ transition: max-height 0.5s ease-out; */
 
 .favorited-recipes::-webkit-scrollbar {
   background-color: #B0B8B4FF;
-  width: 0px;
+  width: 6px;
 }
 
 .favorited-recipes::-webkit-scrollbar-thumb {
