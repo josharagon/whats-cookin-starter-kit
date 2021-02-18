@@ -1,23 +1,23 @@
 let allRecipes = {}
 let currentUser = {}
 const nav = document.querySelector('#nav');
-const main = document.querySelector('#main')
-const greeting = document.querySelector('#welcome')
+const main = document.querySelector('#main');
+const greeting = document.querySelector('#welcome');
 const userKitchen = document.querySelector('#userDropdown');
 const recipeChart = document.querySelector('#recipes');
 const recipesBox = document.querySelector('#recipesBox');
 const recipeCard = document.querySelector('#recipeCard');
 const recipeFront = document.querySelector('#recipeFront');
-const recipeBack = document.querySelector('#recipeBack')
+const recipeBack = document.querySelector('#recipeBack');
 const instructions = document.querySelector('#instructions');
 const star = document.querySelector('#favoriteRecipe');
 
-nav.addEventListener('click', navPress)
-nav.addEventListener('keyup', navPress)
-userKitchen.addEventListener('click', mainPress)
-recipeChart.addEventListener('click', mainPress)
-recipeCard.addEventListener('click', cardPress)
-window.addEventListener('load', instantiate)
+nav.addEventListener('click', navPress);
+nav.addEventListener('keyup', navPress);
+userKitchen.addEventListener('click', mainPress);
+recipeChart.addEventListener('click', mainPress);
+recipeCard.addEventListener('click', cardPress);
+window.addEventListener('load', instantiate);
 
 function instantiate() {
   instantiateRecipeRepository();
@@ -27,15 +27,16 @@ function instantiate() {
 
 function instantiateRecipeRepository() {
   const recipes = recipeData.map(recipe => {
-    var recipe = new Recipe(recipe)
+    recipe = new Recipe(recipe)
     return recipe;
   })
   allRecipes = new RecipeRepository(recipes)
 }
 
 function getRandomUser() {
-  currentUser = new User (usersData[Math.floor(Math.random()*Math.floor(usersData.length))])
-  console.log(currentUser)
+  currentUser = new User (
+    usersData[Math.floor(Math.random() * Math.floor(usersData.length))]
+  );
   welcome.innerText = `Welcome Back, ${currentUser.name}!`
 }
 
@@ -73,27 +74,31 @@ function mainPress() {
 
 function cardPress() {
   if (event.target.id === 'exitRecipe') {
-    recipeFront.innerHTML = ''
-    recipeBack.innerHTML = ''
-    unhideRecipeCard()
-    if (!recipeBack.classList.contains('hidden')) {
-      recipeFront.classList.toggle('hidden')
-      showInstructions()
-    }
+    exitRecipe()
   } else if (event.target.id === 'flipRecipe') {
     showInstructions()
     recipeFront.classList.toggle('hidden')
   } else if (event.target.title === 'Favorite') {
     changeFavorite()
-  } else if( event.target.id === 'saveRecipe') {
+  } else if ( event.target.id === 'saveRecipe') {
     changeSaved()
+    exitRecipe()
   }
 }
 
+function exitRecipe() {
+  recipeFront.innerHTML = ''
+  recipeBack.innerHTML = ''
+  unhideRecipeCard()
+  if (!recipeBack.classList.contains('hidden')) {
+    recipeFront.classList.toggle('hidden')
+    showInstructions()
+  }
+}
 
 function changeFavorite() {
   const list = [...recipeFront.childNodes]
-  let fave = list.find(child => child.title == "Favorite")
+  let fave = list.find(child => child.title === "Favorite")
   let thisRecipe = allRecipes.recipes.find(recipe => fave.id == recipe.id)
   if (fave.innerText === '☆') {
     thisRecipe.favorited = '★'
@@ -110,7 +115,7 @@ function changeFavorite() {
 
 function changeSaved() {
   const list = [...recipeFront.childNodes]
-  let fave = list.find(child => child.title == "Favorite")
+  let fave = list.find(child => child.title === "Favorite")
   let thisRecipe = allRecipes.recipes.find(recipe => fave.id == recipe.id)
   console.log(thisRecipe)
   if (!currentUser.savedRecipes.includes(thisRecipe)) {

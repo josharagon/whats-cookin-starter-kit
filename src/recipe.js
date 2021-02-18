@@ -31,10 +31,10 @@ class Recipe {
         }
         return ingTotal
       }, 0)
-      totalCost += ingQuant /1000
+      totalCost += ingQuant / 1000
       return totalCost
     }, 0)
-    return Math.round(100*ingredientCosts)/100;
+    return Math.round(100 * ingredientCosts) / 100;
   }
 
   returnInstructions() {
