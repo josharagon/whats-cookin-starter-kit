@@ -151,7 +151,7 @@ function showKitchen() {
   } else {
     userKitchen.style.maxHeight = '275px';
     userKitchen.style.height = '275px';
-    recipesBox.style.height = '20%';
+    recipesBox.style.height = '40%';
   }
 }
 
