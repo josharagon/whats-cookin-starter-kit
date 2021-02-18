@@ -23,7 +23,7 @@ class User {
     })
   }
 
-  filterFavoritesViaTags(searchedRecipes, tags) {
+  filterRecipesViaTags(searchedRecipes, tags, destination) {
     const search =  this[searchedRecipes].reduce((recipes, recipe) => {
       let count = 0;
       tags.forEach(tag => {
@@ -43,14 +43,16 @@ class User {
         image: './images/PenguinChef.png'
       })
     }
+    showRecipeImages(destination, search);
     return search
   }
 
-  filterFavoritesViaName(searchedRecipes, itemName, ingredientList) {
+  filterRecipesViaName(searchedRecipes, itemName, destination) {
     let search = this[searchedRecipes].filter(recipe =>
-      recipe.returnIngredientNames(ingredientList).join(', ').includes(itemName.toUpperCase()) ||
+      recipe.returnIngredientNames(ingredientsData).join(', ').includes(itemName.toUpperCase()) ||
       recipe.name.toUpperCase().includes(itemName.toUpperCase()));
     const results = search.map(result => result.name);
+    showRecipeImages(destination, search);
     return results
   }
 
