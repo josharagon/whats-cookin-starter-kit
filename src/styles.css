@@ -8,7 +8,10 @@
     max-height: 0;
     transition: max-height 0.5s ease-out;
     transform: translate(26%, 0%);
+    overflow-y: scroll;
+    min-width: 500px;
   }
+  .welcome-back{font-size: 12px;width: 80px; padding-left: 15px;}
   .you-should-try{height:27%}
   
 }
@@ -275,7 +278,6 @@ content: '↑';
 /* DROPDOWN */
 
 .user-dropdown {
-overflow-y: scroll;
 /* display: flex;
 justify-content: center;
 width: 100%;
@@ -306,7 +308,7 @@ transition: max-height 0.5s ease-out; */
 
 .favorited-recipes::-webkit-scrollbar {
   background-color: #B0B8B4FF;
-  width: 6px;
+  width: 0px;
 }
 
 .favorited-recipes::-webkit-scrollbar-thumb {
