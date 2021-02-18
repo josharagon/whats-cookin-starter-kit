@@ -1,51 +1,62 @@
-# What's Cookin'? Starter Kit 
+# What's Cookin'
 
-The details of this project are outlined in the <a href="https://frontend.turing.io/projects/whats-cookin.html" target="\__blank">project spec</a>.
+## Contributors
 
-## Set Up 
+* [Connor Anderson-Larson](https://github.com/ConnorAndersonLarson)
+* [Joshua Aragon](https://github.com/josharagon)
 
-1. Within your group, decide on one person to have the project repository on their Github account. This person will *fork* this repository - on the top right corner of the page, click the fork button. 
-2. Both group members should then clone down the forked repository (make sure that everyone is added as a collaborator as well). Since you don't want your project to be named "whats-cookin-starter-kit", add an optional argument after the repo url when cloning. The command should look like this: `git clone [remote-address] [what you want to name the repo]`.
-3. Once you have cloned the repo, change into the directory and install the project dependencies. Run npm install to install project dependencies.
-4. Run open src/index.html in the terminal to see the HTML page (you should see some boilerplate HTML displayed on the page)
-5. Make sure both members of your team are collaborators on the forked repo.
+## Abstract
 
-## Testing 
+What's Cookin' is a recipe website created with a focus on Test Driven Design, multi-class integration, wireframing, and responsive layout. Tests were written and passed before any class integration or DOM manipulation was instituted for each class. While TDD was overall successful, end of sprint time crunches brought about class refactoring and tweaking before tests were rewritten, causing test failures that would need to be remedied after the class was finalized. Wireframing, while minimal, proved helpful in expediting initial site creation. As the project developed further it became clear that a more in depth wireframe is critical for site design ease and speed of implementation. Responsive layout, much like wireframing, was an aspect that began with minimal work focused on it but quickly became an obvious point for initial planning on future projects, as much of the initial design had to be tweaked or reworked to best fit desired responsiveness. Overall the creation of this project, while not complete, has taught invaluable lessons on the importance of framework, TDD, communication, and thorough project planning.
 
-There is no boilerplate for testing in this starter-kit repo. You will need to set this up yourself. However, if you ran npm install, then the tooling you need to start testing is already installed (mocha and chai).
+## Technologies Used:
 
-## Linting Your Code 
+* JavaScript
+* CSS
+* HTML
+* Mocha
+* Chai
 
-Run the command in your terminal npm run lint to run the linter on your JavaScript code. There will be errors and warnings right from the start in this starter kit, but that's ok - the linter is still running successfully.
+## Deploy Link:
 
-Your linter will look only at the JavaScript files you have within the src and the test directories.
+* [Click here to open What's Cookin' website](https://connorandersonlarson.github.io/whats-cookin-starter-kit/)
 
+## Initial Setup:
 
-## Data Model
-### Users
-```js
-{
-  "id": [number],
-  "name": [string],
-  "pantry": [array of objects with amount and ingredient id properties]
-},
-```
+* Clone this repo to your computer, run `npm install` for dependencies.
+* After opening the project in your text editor run `npm test [filepath]` to run/test classes (as desired).
+* Site can be viewed/inspected by running `open src index.html` in your terminal.
 
-### Recipes
-```js
-{
-  "ingredients" [array of objects with ingredients ids(connection to ingredients), ingredient names, and quantity data],
-  "instructions": [array of objects with instructions properties and numbered steps],
-  "name": [string],
-  "tags": [array of strings representing info about the recipes]
-}
-```
+## Site Features
 
-### Ingredients
-```js
-{
-  "estimatedCostInCents": [number],
-  "id": [number -- connection to users and recipes],
-  "name": [string]
-}
-```
+<img src="./src/images/homeScreen.png">
+
+* On load all recipes will instantiate and be shown on page to be scrolled through by user.
+
+<img src="./src/images/recipeHoverState.png">
+
+* When a user hovers over a recipe the image will brighten and the name of the recipe will be displayed.
+
+<img src="./src/images/reflectFavoritedItems.png">
+
+* As a user checks recipe cards and favorites them the site will reflect the saved recipes.
+
+<img src="./src/images/showRecipeCard2.gif">
+
+* When a recipe is clicked it's card will show up, detailing the name, cost, and ingredients on one side while the other shows instructions.
+
+<img src="./src/images/userSavedAndFavorites.png">
+
+* A user can look at their favorited and saved recipes by clicking the 'What's Cookin' title, where they can then search through their saved recipes using the search bar.
+
+### Future Additions
+
+* Refactor recipe image initialization to reduce load times.
+* Increase accessibility.
+* Implement Pantry Class to store user ingredients.
+* Polish tests with happy/sad testing, incorrect data.
+* Ability to remove saved recipes when done cooking.
+* Add user class search features to work out of filter.js.
+* Redesign layout responsiveness from a mobile-first perspective.
+* Add user feature to add their own recipes/ingredients.
+* Implement system to show recipes a user can make based on their pantry.
