@@ -240,15 +240,15 @@ content: '↑';
 
 
 /* DROPDOWN */
-
 .user-dropdown {
-display: flex;
-justify-content: center;
-width: 100%;
-box-sizing: border-box;
-padding: 0 50px 0 50px;
-max-height: 0;
-transition: max-height 0.5s ease-out;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 0 50px 0 50px;
+  max-height: 0;
+  transition: max-height 0.5s ease-out;
+  align-items: center;
+  width: 850px;
 }
 
 .saved-recipes, .you-can-make {
@@ -387,4 +387,51 @@ display:none;
 
 .collapsed {
 visibility: collapse;
+}
+
+/* RESPONSIVE LAYOUT */
+
+@media screen and (max-width:499px) {
+  body{
+    overflow-y:visible ;
+  }
+  .user-dropdown{display: flex;
+    flex-direction: column;
+    justify-content: flex-start ;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 ;
+    max-height: 0;
+    transition: max-height 0.5s ease-out;
+    overflow-y: scroll ;
+    overflow: hidden;
+  }
+  .centered{position:fixed;}
+  .welcome-back{font-size: 12px;width: 80px; padding-left: 15px;}
+  .you-should-try{height:27%; position: absolute; height: 50%;}
+  .random-recipe-bar {
+    overflow: unset;
+    overflow-y: unset;
+  }
+  .recipe-card{
+    width: 300px;
+  }
+  .recipes-to-cook {
+    overflow:unset;
+    overflow-y: unset;
+  }
+  .saved-recipes, .you-can-make, .recipes-to-cook, .favorited-recipes{
+    width: 100%;
+    height: fit-content;
+    overflow-y: unset;
+  }
+}
+
+@media screen and (min-width: 774px) {
+.random-recipe-bar{display: flex;}
+.centered{top: 50%; left: 50%;}
+}
+
+@media screen and (min-width: 1124px) {
+
 }
