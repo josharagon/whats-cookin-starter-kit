@@ -7,6 +7,7 @@ class Recipe {
     this.instructions = recipe.instructions,
     this.tags = recipe.tags,
     this.image = recipe.image,
+    this.favorited = '☆',
     this.ingredientCodes = recipe.ingredients.map((item) => {
       return item.id
     });
@@ -30,10 +31,10 @@ class Recipe {
         }
         return ingTotal
       }, 0)
-      totalCost += ingQuant /1000
+      totalCost += ingQuant / 1000
       return totalCost
     }, 0)
-    return Math.round(100*ingredientCosts)/100;
+    return Math.round(100 * ingredientCosts) / 100;
   }
 
   returnInstructions() {

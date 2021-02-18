@@ -1,53 +1,52 @@
 let allRecipes = {}
+let currentUser = {}
 const nav = document.querySelector('#nav');
-const main = document.querySelector('#main')
+const main = document.querySelector('#main');
+const greeting = document.querySelector('#welcome');
 const userKitchen = document.querySelector('#userDropdown');
 const recipeChart = document.querySelector('#recipes');
 const recipesBox = document.querySelector('#recipesBox');
 const recipeCard = document.querySelector('#recipeCard');
 const recipeFront = document.querySelector('#recipeFront');
-const recipeBack = document.querySelector('#recipeBack')
+const recipeBack = document.querySelector('#recipeBack');
 const instructions = document.querySelector('#instructions');
 const star = document.querySelector('#favoriteRecipe');
 
-nav.addEventListener('click', navPress)
-nav.addEventListener('keyup', navPress)
-recipeChart.addEventListener('click', mainPress)
-recipeCard.addEventListener('click', cardPress)
-window.addEventListener('load', instantiate)
+nav.addEventListener('click', navPress);
+nav.addEventListener('keyup', navPress);
+userKitchen.addEventListener('click', mainPress);
+recipeChart.addEventListener('click', mainPress);
+recipeCard.addEventListener('click', cardPress);
+window.addEventListener('load', instantiate);
 
 function instantiate() {
   instantiateRecipeRepository();
-  showRecipeImages(allRecipes.recipes);
+  getRandomUser();
+  showRecipeImages(recipeChart, allRecipes.recipes);
 }
 
 function instantiateRecipeRepository() {
   const recipes = recipeData.map(recipe => {
-    var recipe = new Recipe(recipe)
+    recipe = new Recipe(recipe)
     return recipe;
   })
   allRecipes = new RecipeRepository(recipes)
 }
 
-function checkFavorites(recipeID) {
-  // let match = user.favorites.find(recipe => {
-  //   if (recipe.id === recipeId) {
-  //     return true;
-  //   }
-  // })
-  // if (match) {
-  //   return '★'
-  // } else {
-  //   return '☆'
-  // }
-  return '☆';
+function getRandomUser() {
+  currentUser = new User (
+    usersData[Math.floor(Math.random() * Math.floor(usersData.length))]
+  );
+  welcome.innerText = `Welcome Back, ${currentUser.name}!`
 }
 
-function showRecipeImages(recipes) {
+
+function showRecipeImages(destination, recipes) {
+  destination.innerHTML = '';
   recipes.forEach(recipe => {
-    recipeChart.innerHTML += `<div class="recipe-image" id=${recipe.id}>
+    destination.innerHTML += `<div class="recipe-image" id=${recipe.id}>
       <img src=${recipe.image} alt=${recipe.name}>
-      <p class="favorite">${checkFavorites(recipe.id)}</p>
+      <p class="favorite">${recipe.favorited}</p>
       <p class="centered" >${recipe.name}</p>
     </div>`
   })
@@ -56,20 +55,14 @@ function showRecipeImages(recipes) {
 function navPress() {
   if (event.target.id === 'whatsCookin') {
     showKitchen()
-    showFavorites()
-    showRecipesToCook()
+
+  } else if (event.target.id === 'searchBar' && !userKitchen.classList.contains('collapsed')) {
+    updateRecipeImages(currentUser, 'savedRecipes', userKitchen.children[0].children[1])
   } else if (event.target.id === 'searchBar') {
-    updateRecipeImages()
+    updateRecipeImages(allRecipes, 'recipes', recipeChart)
   }
 }
 
-function showFavorites() {
-
-}
-
-function showRecipesToCook() {
-
-}
 
 function mainPress() {
   let click = event.target.parentNode.id;
@@ -81,37 +74,66 @@ function mainPress() {
 
 function cardPress() {
   if (event.target.id === 'exitRecipe') {
-    recipeFront.innerHTML = ''
-    recipeBack.innerHTML = ''
-    unhideRecipeCard()
-    if (!recipeBack.classList.contains('hidden')) {
-      recipeFront.classList.toggle('hidden')
-      showInstructions()
-    }
+    exitRecipe()
   } else if (event.target.id === 'flipRecipe') {
     showInstructions()
     recipeFront.classList.toggle('hidden')
-  } else if (event.target.id === 'favoriteRecipe') {
+  } else if (event.target.title === 'Favorite') {
     changeFavorite()
+  } else if ( event.target.id === 'saveRecipe') {
+    changeSaved()
+    exitRecipe()
+  }
+}
+
+function exitRecipe() {
+  recipeFront.innerHTML = ''
+  recipeBack.innerHTML = ''
+  unhideRecipeCard()
+  if (!recipeBack.classList.contains('hidden')) {
+    recipeFront.classList.toggle('hidden')
+    showInstructions()
   }
 }
 
 function changeFavorite() {
   const list = [...recipeFront.childNodes]
-  let fave = list.find(child => child.id === 'favoriteRecipe')
+  let fave = list.find(child => child.title === "Favorite")
+  let thisRecipe = allRecipes.recipes.find(recipe => fave.id == recipe.id)
   if (fave.innerText === '☆') {
-    // function to update user class
-    // showRecipeImages(allRecipes.recipes)
+    thisRecipe.favorited = '★'
+    currentUser.addRecipe('favorites', thisRecipe);
     fave.innerText = '★'
+    console.log(this)
   } else {
+    thisRecipe.favorited = '☆'
+    currentUser.removeRecipe('favorites', fave.id);
     fave.innerHTML = '☆'
   }
+  updateAllRecipes();
+}
+
+function changeSaved() {
+  const list = [...recipeFront.childNodes]
+  let fave = list.find(child => child.title === "Favorite")
+  let thisRecipe = allRecipes.recipes.find(recipe => fave.id == recipe.id)
+  console.log(thisRecipe)
+  if (!currentUser.savedRecipes.includes(thisRecipe)) {
+    currentUser.addRecipe('savedRecipes', thisRecipe);
+  }
+  updateAllRecipes();
+}
+
+function updateAllRecipes() {
+  showRecipeImages(recipeChart, allRecipes.recipes);
+  showRecipeImages(userKitchen.children[1].children[1], currentUser.favorites);
+  showRecipeImages(userKitchen.children[0].children[1], currentUser.savedRecipes);
 }
 
 function showRecipe(recipe) {
   unhideRecipeCard()
   recipeFront.innerHTML += `<img src=${recipe.image} alt=${recipe.name}>
-  <p class="favorite" id="favoriteRecipe">${checkFavorites(recipe.id)}</p>
+  <p class="favorite" id="${recipe.id}" title="Favorite">${recipe.favorited}</p>
   <h2 class="recipeTitle card-text">${recipe.name}</h2>
   <h3 class="cost card-text">Cost: $${recipe.returnTotalCost(ingredientsData)}</h3>
   <h4 class="cost card-text"><u>Ingredients:</u> </br> ${recipe.returnIngredients()}</h4>`
@@ -140,8 +162,8 @@ function showKitchen() {
   }
 }
 
-function updateRecipeImages() {
-  if (allRecipes.filterRecipesViaName('recipes', searchBar.value).length === 0) {
-    allRecipes.filterRecipesViaTags('recipes', searchBar.value.split(' '));
+function updateRecipeImages(instance, searchIn, destination) {
+  if (instance.filterRecipesViaName(searchIn, searchBar.value, destination).length === 0) {
+    instance.filterRecipesViaTags(searchIn, searchBar.value.split(' '), destination);
   }
 }
