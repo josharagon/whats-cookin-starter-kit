@@ -72,7 +72,7 @@ describe('User', function() {
     it('should be able to filter favorited recipes by one or more tags', function() {
       newUser.addRecipe('favorites', allRecipes, 595736)
       newUser.addRecipe('favorites', allRecipes, 678353)
-      expect(newUser.filterFavoritesViaTags('favorites', ['testMultiple1', 'testMultiple2'])[0]).to.equal(
+      expect(newUser.filterRecipesViaTags('favorites', ['testMultiple1', 'testMultiple2'])[0]).to.equal(
         allRecipes.recipes[0])
     })
 
@@ -80,7 +80,7 @@ describe('User', function() {
       newUser.addRecipe('savedRecipes', allRecipes, 595736)
       newUser.addRecipe('savedRecipes', allRecipes, 678353)
       newUser.addRecipe('savedRecipes', allRecipes, 741603)
-      expect(newUser.filterFavoritesViaName('savedRecipes', 'Dijon', ingredientsData)).to.deep.equal([allRecipes.recipes[0].name, allRecipes.recipes[1].name])
+      expect(newUser.filterRecipesViaName('savedRecipes', 'Dijon', ingredientsData)).to.deep.equal([allRecipes.recipes[0].name, allRecipes.recipes[1].name])
     })
   })
 })

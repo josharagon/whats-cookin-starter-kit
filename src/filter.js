@@ -1,5 +1,5 @@
 function filterRecipesViaTags(searchedRecipes, tags, destination) {
-  recipeChart.innerHTML = ''
+  destination.innerHTML = ''
   const search =  this[searchedRecipes].reduce((recipes, recipe) => {
     let count = 0;
     tags.forEach(tag => {
@@ -24,17 +24,15 @@ function filterRecipesViaTags(searchedRecipes, tags, destination) {
 }
 
 function filterRecipesViaName(searchedRecipes, itemName, destination) {
-  recipeChart.innerHTML = ''
+  destination.innerHTML = ''
   let search = this[searchedRecipes].filter(recipe =>
     recipe.returnIngredientNames(ingredientsData).join(', ').includes(itemName.toUpperCase()) ||
     recipe.name.toUpperCase().includes(itemName.toUpperCase()));
-  recipeChart.innerHTML = ''
+  destination.innerHTML = ''
   showRecipeImages(destination, search);
   const results = search.map(result => result.name);
   return results
 }
 
-module.exports = {
-filterRecipesViaName,
-filterRecipesViaTags
-};
+module.exports = filterRecipesViaName;
+module.exports = filterRecipesViaTags;
