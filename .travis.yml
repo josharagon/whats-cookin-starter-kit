@@ -1,0 +1,11 @@
+sudo: false
+
+language: node_js
+
+node.js:
+  - node
+
+  script:
+  - npm i
+  - npm test
+
